@@ -28,17 +28,6 @@
                     <option value="jp_l7">Japan (Loto 7)</option>
                     <option value="eu_em">Europe (EuroMillions)</option>
                 </select>
-                <div class="set-count-wrapper">
-                    <label for="set-count">Sets:</label>
-                    <select id="set-count" class="set-count-select">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                    </select>
-                </div>
                 <button id="theme-toggle" title="Toggle Dark/Light Mode">
                     <span class="icon">🌙</span>
                 </button>
@@ -54,6 +43,19 @@
 
         <section id="generator" class="container">
             <h2>Generate Your Lucky Numbers</h2>
+            <div class="generator-controls">
+                <div class="set-count-wrapper">
+                    <label for="set-count">How many sets?</label>
+                    <select id="set-count" class="set-count-select">
+                        <option value="1">1 Set</option>
+                        <option value="2">2 Sets</option>
+                        <option value="3">3 Sets</option>
+                        <option value="4">4 Sets</option>
+                        <option value="5">5 Sets</option>
+                        <option value="10">10 Sets</option>
+                    </select>
+                </div>
+            </div>
             <div id="lotto-numbers" class="lotto-numbers-container"></div>
             <button id="generate-btn">Generate Numbers</button>
         </section>
