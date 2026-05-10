@@ -7,6 +7,7 @@ const LOTTO_CONFIGS = {
         mainRange: 45,
         bonusCount: 1,
         bonusRange: 45,
+        separateBonusPool: false,
         texts: {
             title: '전문 로또 번호 생성기',
             heroTitle: '엑스퍼트 로또 번호 생성기',
@@ -35,6 +36,7 @@ const LOTTO_CONFIGS = {
         bonusCount: 1,
         bonusRange: 26,
         bonusLabel: 'PB',
+        separateBonusPool: true,
         texts: {
             title: 'Expert Lotto Generator',
             heroTitle: 'Expert Lotto Number Generator',
@@ -63,6 +65,7 @@ const LOTTO_CONFIGS = {
         bonusCount: 1,
         bonusRange: 59,
         bonusLabel: 'Bonus',
+        separateBonusPool: false,
         texts: {
             title: 'Expert Lotto Generator',
             heroTitle: 'UK Lotto Number Generator',
@@ -90,22 +93,23 @@ const LOTTO_CONFIGS = {
         mainRange: 37,
         bonusCount: 2,
         bonusRange: 37,
+        separateBonusPool: false,
         texts: {
             title: '専門ロト番号生成器',
-            heroTitle: 'ロト7 番号生成器',
-            heroSub: 'あなたの幸運のための信頼できるパートナー。科学的なランダム抽出と洗練されたデザイン。',
-            genTitle: '幸運の番号を生成する',
-            genBtn: '番号を生成',
+            heroTitle: 'ロト7 番호 생성기',
+            heroSub: 'あなたの幸運のための信頼できるパートナー。科学的なラン덤 추출과 세련된 디자인。',
+            genTitle: '幸運의 番号를 생성하기',
+            genBtn: '番号를 생성하기',
             guideTitle: '仕組み',
-            guideText: '当生成器は暗号学的に安全な疑似乱数生成器を使用し、各抽選の独立性と公平性を保証します。',
+            guideText: '当生成器은 암호학적으로 안전한疑似乱数生成器を使用し、各抽選의 독립성과 공정성을 보장합니다。',
             probTitle: '確率分析',
-            probText: '確率を理解することが重要です。すべての組み合わせは等しい確率を持ちますが、当ツールは偏りのない選択を助けます。',
+            probText: '確率を理解することが重要です。すべての組み合わせは等しい確率を持ちますが、当ツールは偏りのない選択을 돕습니다.',
             stratTitle: '戦略のヒント',
-            stratText: 'すべての偶数や奇数のような一般的なパターンを避けてください。バランスの取れた選択が視覚的にも良く、確率的にも同等です。',
+            stratText: 'すべての偶数や奇数のような一般的なパターンを避けてください。バランスの取れた選択が視覚的にも良く、確率적에도 동등합니다。',
             aboutTitle: 'LottoProについて',
-            aboutText: 'LottoProは番号選択プロセスを簡素化するために作られました。クリーンなUIとユーザーのプライバシー保護に集中しています。',
+            aboutText: 'LottoPro는 번호 선택 과정을 단순화하기 위해 만들어졌습니다. 깨끗한 UI와 사용자 개인정보 보호에 집중합니다.',
             contactTitle: '提携およびお問い合わせ',
-            contactSub: 'コラボレーションやご質問がありますか？以下にメッセージを残してください。',
+            contactSub: '협업이나 문의 사항이 있으신가요? 아래에 메시지를 남겨주세요.',
             submitBtn: '送信する'
         }
     },
@@ -118,6 +122,7 @@ const LOTTO_CONFIGS = {
         bonusCount: 2,
         bonusRange: 12,
         bonusLabel: 'Star',
+        separateBonusPool: true,
         texts: {
             title: 'EuroMillions Generator',
             heroTitle: 'EuroMillions Lucky Pick',
@@ -141,7 +146,7 @@ const LOTTO_CONFIGS = {
 
 class LottoBall extends HTMLElement {
     static get observedAttributes() {
-        return ['number', 'type'];
+        return ['number', 'type', 'label'];
     }
 
     constructor() {
@@ -192,6 +197,7 @@ class LottoBall extends HTMLElement {
                     color: var(--text-muted, #64748b);
                     margin-top: 4px;
                     font-weight: 600;
+                    text-transform: uppercase;
                 }
                 @keyframes pop-in {
                     0% { transform: scale(0.5); opacity: 0; }
@@ -279,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
             
+            // Render Main Balls
             mainNumbers.forEach((num, index) => {
                 setTimeout(() => {
                     const ball = document.createElement('lotto-ball');
@@ -288,6 +295,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     setDiv.appendChild(ball);
                 }, (i * 100) + (index * 50));
             });
+
+            // Render Bonus Balls if applicable
+            if (currentConfig.bonusCount > 0) {
+                const exclude = currentConfig.separateBonusPool ? [] : mainNumbers;
+                const bonusNumbers = generateUniqueNumbers(currentConfig.bonusCount, 1, currentConfig.bonusRange, exclude);
+                
+                bonusNumbers.forEach((num, index) => {
+                    setTimeout(() => {
+                        const ball = document.createElement('lotto-ball');
+                        ball.setAttribute('number', num);
+                        ball.setAttribute('type', 'bonus');
+                        ball.setAttribute('label', currentConfig.bonusLabel || 'Bonus');
+                        ball.style.setProperty('--ball-color', '#ef4444'); // Distinct color for bonus
+                        setDiv.appendChild(ball);
+                    }, (i * 100) + ((currentConfig.mainCount + index) * 50));
+                });
+            }
         }
     });
 
