@@ -285,16 +285,31 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#generator h2').textContent = t.genTitle;
         generateBtn.textContent = t.genBtn;
         
+        // Update Tabs Text
+        document.querySelector('.tab-btn[data-tab="guide"]').textContent = currentConfig.lang === 'ko' ? '가이드' : (currentConfig.lang === 'ja' ? 'ガイド' : 'Guide');
+        document.querySelector('.tab-btn[data-tab="stats"]').textContent = currentConfig.lang === 'ko' ? '통계분석' : (currentConfig.lang === 'ja' ? '統計分析' : 'Analysis');
+        document.querySelector('.tab-btn[data-tab="strategy"]').textContent = currentConfig.lang === 'ko' ? '전략팁' : (currentConfig.lang === 'ja' ? '戦略' : 'Strategy');
+        document.querySelector('.tab-btn[data-tab="faq"]').textContent = 'FAQ';
+
         document.querySelector('#guide h3').textContent = t.guideTitle;
-        document.querySelector('#guide > p').textContent = t.guideText;
-        document.querySelector('#guide article:nth-child(1) h4').textContent = t.probTitle;
-        document.querySelector('#guide article:nth-child(1) p').textContent = t.probText;
-        document.querySelector('#guide article:nth-child(2) h4').textContent = t.stratTitle;
-        document.querySelector('#guide article:nth-child(2) p').textContent = t.stratText;
+        document.getElementById('guide-desc').textContent = t.guideText;
+        document.querySelector('#stats h3').textContent = t.statsTitle;
+        document.getElementById('stats-desc').textContent = t.probText;
+        document.querySelector('#strategy h3').textContent = t.stratTitle;
+        document.getElementById('strategy-desc').textContent = t.stratText;
         
-        document.querySelector('#about h3').textContent = t.aboutTitle;
-        document.querySelector('#about p').textContent = t.aboutText;
-        
+        // FAQ content update
+        const faqData = {
+            ko: { q1: '정말 무작위인가요?', a1: '네, 브라우저의 보안 난수 생성기를 사용합니다.', q2: '당첨을 보장하나요?', a2: '아니요, 오락 및 번호 조합 도우미일 뿐입니다.' },
+            ja: { q1: '本当にランダムですか？', a1: 'はい、安全な疑似乱数生成器を使用しています。', q2: '当選は保証されますか？', a2: 'いいえ、エンターテインメント目的のツールです。' },
+            en: { q1: 'Is it truly random?', a1: 'Yes, we use secure PRNG algorithms.', q2: 'Does this guarantee a win?', a2: 'No, this is for entertainment purposes only.' }
+        };
+        const faq = faqData[currentConfig.lang] || faqData.en;
+        document.getElementById('faq-q1').textContent = faq.q1;
+        document.getElementById('faq-a1').textContent = faq.a1;
+        document.getElementById('faq-q2').textContent = faq.q2;
+        document.getElementById('faq-a2').textContent = faq.a2;
+
         document.querySelector('#contact h2').textContent = t.contactTitle;
         document.querySelector('#contact p').textContent = t.contactSub;
         document.querySelector('.submit-btn').textContent = t.submitBtn;
@@ -311,6 +326,22 @@ document.addEventListener('DOMContentLoaded', () => {
         
         numbersContainer.innerHTML = ''; // Clear numbers on switch
     }
+
+    // Tab Logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+            
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
 
     generateBtn.addEventListener('click', () => {
         const setCount = parseInt(document.getElementById('set-count').value);

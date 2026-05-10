@@ -67,24 +67,38 @@
             <button id="generate-btn">Generate Numbers</button>
         </section>
 
-        <section id="guide" class="info-section">
-            <h3>How It Works</h3>
-            <p>Our generator uses a cryptographically secure pseudo-random number generator to ensure that every draw is independent and fair. We provide numbers between 1 and 45, following standard international lotto formats.</p>
-            <div class="article-grid">
-                <article>
-                    <h4>Probability Analysis</h4>
-                    <p>Understanding the odds is key. Every combination has an equal chance, but our tool helps you pick without bias.</p>
-                </article>
-                <article>
-                    <h4>Strategy Tips</h4>
-                    <p>Avoid common patterns like all evens or all odds. Balanced selections are more aesthetically pleasing and equally likely.</p>
-                </article>
+        <section id="info-tabs" class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="guide">Guide</button>
+                <button class="tab-btn" data-tab="stats">Analysis</button>
+                <button class="tab-btn" data-tab="strategy">Strategy</button>
+                <button class="tab-btn" data-tab="faq">FAQ</button>
             </div>
-        </section>
-
-        <section id="about" class="info-section">
-            <h3>About LottoPro</h3>
-            <p>LottoPro was created to simplify the process of picking numbers. We focus on clean UI and user privacy. No data is stored, and everything happens right in your browser.</p>
+            <div class="tabs-content">
+                <div id="guide" class="tab-pane active">
+                    <h3>How It Works</h3>
+                    <p id="guide-desc">Our generator uses a cryptographically secure pseudo-random number generator to ensure that every draw is independent and fair.</p>
+                </div>
+                <div id="stats" class="tab-pane">
+                    <h3>Statistical Analysis</h3>
+                    <p id="stats-desc">Understanding the odds is key. Every combination has an equal chance, but our tool helps you pick without bias by analyzing historical data patterns.</p>
+                </div>
+                <div id="strategy" class="tab-pane">
+                    <h3>Strategy Tips</h3>
+                    <p id="strategy-desc">Avoid common patterns like all evens or all odds. Balanced selections are more aesthetically pleasing and statistically common in long-term draws.</p>
+                </div>
+                <div id="faq" class="tab-pane">
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="faq-item">
+                        <h4 id="faq-q1">Is it truly random?</h4>
+                        <p id="faq-a1">Yes, we use the standard Web Crypto API to generate high-entropy random numbers.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 id="faq-q2">Does this guarantee a win?</h4>
+                        <p id="faq-a2">No. Lottery is a game of pure chance. This tool is for entertainment and organization only.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="contact" class="contact-container">
