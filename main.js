@@ -238,7 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Internationalization Logic
-    let currentConfig = LOTTO_CONFIGS.kr;
+    let currentConfig = LOTTO_CONFIGS.us_pb;
+    countrySelect.value = 'us_pb';
 
     countrySelect.addEventListener('change', (e) => {
         const key = e.target.value;
