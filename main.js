@@ -221,7 +221,6 @@ class LottoBall extends HTMLElement {
 
     render() {
         const number = this.getAttribute('number') || '';
-        const type = this.getAttribute('type') || 'main';
         const label = this.getAttribute('label') || '';
         const rolling = this.hasAttribute('rolling');
         
@@ -246,11 +245,11 @@ class LottoBall extends HTMLElement {
                     font-weight: 700;
                     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
                     position: relative;
-                    ${rolling ? 'animation: roll 0.2s infinite linear;' : 'animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;'}
+                    animation: ${rolling ? 'roll 0.2s infinite linear' : 'pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards'};
                 }
                 .label {
                     font-size: 0.6rem;
-                    color: var(--text-muted, #64748b);
+                    color: #64748b;
                     margin-top: 4px;
                     font-weight: 700;
                     text-transform: uppercase;
@@ -266,7 +265,7 @@ class LottoBall extends HTMLElement {
                 }
             </style>
             <div class="ball">${number}</div>
-            ${label ? \`<div class="label">\${label}</div>\` : ''}
+            ${label ? `<div class="label">${label}</div>` : ''}
         `;
     }
 }
@@ -295,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateThemeIcon(theme) {
         const icon = themeToggle.querySelector('.icon');
-        icon.textContent = theme === 'light' ? '🌙' : '☀️';
+        if (icon) icon.textContent = theme === 'light' ? '🌙' : '☀️';
     }
 
     // Internationalization Logic
@@ -312,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const t = currentConfig.texts;
         const m = currentConfig.meta;
         
-        // SEO & Titles
         document.title = m.title;
         document.querySelector('meta[name="description"]')?.setAttribute('content', m.description);
         
@@ -322,10 +320,12 @@ document.addEventListener('DOMContentLoaded', () => {
         generateBtn.textContent = t.genBtn;
         
         // Update Tabs Text
-        document.querySelector('.tab-btn[data-tab="guide"]').textContent = currentConfig.lang === 'ko' ? '가이드' : (currentConfig.lang === 'ja' ? 'ガイド' : 'Guide');
-        document.querySelector('.tab-btn[data-tab="stats"]').textContent = currentConfig.lang === 'ko' ? '통계분석' : (currentConfig.lang === 'ja' ? '統計分析' : 'Analysis');
-        document.querySelector('.tab-btn[data-tab="strategy"]').textContent = currentConfig.lang === 'ko' ? '전략팁' : (currentConfig.lang === 'ja' ? '戦略' : 'Strategy');
-        document.querySelector('.tab-btn[data-tab="faq"]').textContent = 'FAQ';
+        const tabGuide = document.querySelector('.tab-btn[data-tab="guide"]');
+        const tabStats = document.querySelector('.tab-btn[data-tab="stats"]');
+        const tabStrategy = document.querySelector('.tab-btn[data-tab="strategy"]');
+        if (tabGuide) tabGuide.textContent = currentConfig.lang === 'ko' ? '가이드' : (currentConfig.lang === 'ja' ? 'ガイド' : 'Guide');
+        if (tabStats) tabStats.textContent = currentConfig.lang === 'ko' ? '통계분석' : (currentConfig.lang === 'ja' ? '統計分析' : 'Analysis');
+        if (tabStrategy) tabStrategy.textContent = currentConfig.lang === 'ko' ? '전략팁' : (currentConfig.lang === 'ja' ? '戦略' : 'Strategy');
 
         document.querySelector('#guide h3').textContent = t.guideTitle;
         document.getElementById('guide-desc').textContent = t.guideText;
@@ -357,13 +357,10 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsLink.textContent = t.checkResults;
         resultsLink.href = currentConfig.resultsUrl;
         
-        // Ad placeholders
         document.querySelectorAll('.ad-placeholder-text').forEach(el => el.textContent = t.adPlaceholder);
-
-        // Form placeholders
         document.getElementById('name').placeholder = currentConfig.lang === 'ko' ? '이름' : (currentConfig.lang === 'ja' ? '名前' : 'Your Name');
         
-        numbersContainer.innerHTML = ''; // Clear numbers on switch
+        numbersContainer.innerHTML = '';
     }
 
     // Tab Logic
@@ -409,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setWrapper.appendChild(actionsDiv);
             numbersContainer.appendChild(setWrapper);
 
-            // Initial Rolling Effect
+            // Initial Animation
             for(let k=0; k<currentConfig.mainCount + currentConfig.bonusCount; k++) {
                 const dummyBall = document.createElement('lotto-ball');
                 dummyBall.setAttribute('number', '?');
@@ -424,53 +421,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 bonusNumbers = generateUniqueNumbers(currentConfig.bonusCount, 1, currentConfig.bonusRange, exclude);
             }
 
-            // Real numbers reveal after 800ms animation
             setTimeout(() => {
                 setDiv.innerHTML = '';
                 mainNumbers.forEach((num, index) => {
                     setTimeout(() => {
                         const ball = document.createElement('lotto-ball');
                         ball.setAttribute('number', num);
-                        ball.setAttribute('type', 'main');
                         ball.style.setProperty('--ball-color', getBallColor(num));
                         setDiv.appendChild(ball);
                     }, index * 50);
                 });
 
-                if (bonusNumbers.length > 0) {
-                    bonusNumbers.forEach((num, index) => {
-                        setTimeout(() => {
-                            const ball = document.createElement('lotto-ball');
-                            ball.setAttribute('number', num);
-                            ball.setAttribute('type', 'bonus');
-                            ball.setAttribute('label', currentConfig.bonusLabel || 'Bonus');
-                            ball.style.setProperty('--ball-color', '#ef4444');
-                            setDiv.appendChild(ball);
-                        }, (currentConfig.mainCount + index) * 50);
-                    });
-                }
+                bonusNumbers.forEach((num, index) => {
+                    setTimeout(() => {
+                        const ball = document.createElement('lotto-ball');
+                        ball.setAttribute('number', num);
+                        ball.setAttribute('label', currentConfig.bonusLabel || 'Bonus');
+                        ball.style.setProperty('--ball-color', '#ef4444');
+                        setDiv.appendChild(ball);
+                    }, (currentConfig.mainCount + index) * 50);
+                });
                 
                 if (i === setCount - 1) generateBtn.disabled = false;
             }, 800 + (i * 100));
 
-            // Copy logic
             copyBtn.addEventListener('click', () => {
-                const text = \`\${currentConfig.lottoName}: \${mainNumbers.join(', ')}\${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}\`;
+                const text = `${currentConfig.lottoName}: ${mainNumbers.join(', ')}${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}`;
                 navigator.clipboard.writeText(text).then(() => {
                     copyBtn.textContent = currentConfig.texts.copySuccess;
                     setTimeout(() => copyBtn.textContent = currentConfig.texts.copyBtn, 2000);
                 });
             });
 
-            // Share logic (Web Share API or fallback)
             shareBtn.addEventListener('click', () => {
-                const text = \`My Lucky \${currentConfig.lottoName} Numbers: \${mainNumbers.join(', ')}\`;
-                const url = window.location.href;
+                const text = `My Lucky ${currentConfig.lottoName} Numbers: ${mainNumbers.join(', ')}`;
                 if (navigator.share) {
-                    navigator.share({ title: 'LottoPro', text: text, url: url });
+                    navigator.share({ title: 'LottoPro', text: text, url: window.location.href });
                 } else {
-                    const twitterUrl = \`https://twitter.com/intent/tweet?text=\${encodeURIComponent(text + ' ' + url)}\`;
-                    window.open(twitterUrl, '_blank');
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' ' + window.location.href)}`, '_blank');
                 }
             });
         }
