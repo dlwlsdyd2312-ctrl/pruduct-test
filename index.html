@@ -3,41 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-5192540925886631">
     <title>Lotto Number Generator</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5192540925886631"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="theme-toggle-wrapper">
-        <button id="theme-toggle" title="Toggle Dark/Light Mode">
-            <span class="icon">🌙</span>
-        </button>
-    </div>
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div id="lotto-numbers" class="lotto-numbers-container"></div>
-        <button id="generate-btn">Generate Numbers</button>
-    </div>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">LottoPro</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#generator">Generator</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#guide">Guide</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" title="Toggle Dark/Light Mode">
+                <span class="icon">🌙</span>
+            </button>
+        </nav>
+    </header>
 
-    <div class="contact-container">
-        <h2>Partnership Inquiry</h2>
-        <form action="https://formspree.io/f/xwvywojg" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required placeholder="Your Name">
+    <main class="content-wrapper">
+        <section id="home" class="hero">
+            <h1>Expert Lotto Number Generator</h1>
+            <p>Your reliable companion for random number selection. Scientifically random, visually stunning.</p>
+        </section>
+
+        <section id="generator" class="container">
+            <h2>Generate Your Lucky Numbers</h2>
+            <div id="lotto-numbers" class="lotto-numbers-container"></div>
+            <button id="generate-btn">Generate Numbers</button>
+        </section>
+
+        <section id="guide" class="info-section">
+            <h3>How It Works</h3>
+            <p>Our generator uses a cryptographically secure pseudo-random number generator to ensure that every draw is independent and fair. We provide numbers between 1 and 45, following standard international lotto formats.</p>
+            <div class="article-grid">
+                <article>
+                    <h4>Probability Analysis</h4>
+                    <p>Understanding the odds is key. Every combination has an equal chance, but our tool helps you pick without bias.</p>
+                </article>
+                <article>
+                    <h4>Strategy Tips</h4>
+                    <p>Avoid common patterns like all evens or all odds. Balanced selections are more aesthetically pleasing and equally likely.</p>
+                </article>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="_replyto" required placeholder="your@email.com">
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </div>
+        </section>
+
+        <section id="about" class="info-section">
+            <h3>About LottoPro</h3>
+            <p>LottoPro was created to simplify the process of picking numbers. We focus on clean UI and user privacy. No data is stored, and everything happens right in your browser.</p>
+        </section>
+
+        <section id="contact" class="contact-container">
+            <h2>Partnership & Inquiry</h2>
+            <p>Interested in collaborating or have a question? Drop us a message below.</p>
+            <form action="https://formspree.io/f/xwvywojg" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="_replyto" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Describe your inquiry..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Inquiry</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 LottoPro. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+    </footer>
     <script src="main.js" type="module"></script>
 </body>
 </html>
