@@ -269,35 +269,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     generateBtn.addEventListener('click', () => {
+        const setCount = parseInt(document.getElementById('set-count').value);
         numbersContainer.innerHTML = '';
-        const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
         
-        // Main Balls
-        mainNumbers.forEach((num, index) => {
-            setTimeout(() => {
-                createBall(num, 'main', index);
-            }, index * 100);
-        });
+        for (let i = 0; i < setCount; i++) {
+            const setDiv = document.createElement('div');
+            setDiv.className = 'lotto-set';
+            numbersContainer.appendChild(setDiv);
 
-        // Bonus Balls
-        if (currentConfig.bonusCount > 0) {
-            const bonusNumbers = generateUniqueNumbers(currentConfig.bonusCount, 1, currentConfig.bonusRange, mainNumbers);
-            bonusNumbers.forEach((num, index) => {
+            const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
+            
+            mainNumbers.forEach((num, index) => {
                 setTimeout(() => {
-                    createBall(num, 'bonus', currentConfig.mainCount + index, currentConfig.bonusLabel || 'Bonus');
-                }, (currentConfig.mainCount + index) * 100);
+                    const ball = document.createElement('lotto-ball');
+                    ball.setAttribute('number', num);
+                    ball.setAttribute('type', 'main');
+                    ball.style.setProperty('--ball-color', getBallColor(num));
+                    setDiv.appendChild(ball);
+                }, (i * 100) + (index * 50));
             });
         }
     });
-
-    function createBall(num, type, index, label = '') {
-        const ball = document.createElement('lotto-ball');
-        ball.setAttribute('number', num);
-        ball.setAttribute('type', type);
-        if (label) ball.setAttribute('label', label);
-        ball.style.setProperty('--ball-color', type === 'main' ? getBallColor(num) : '#ef4444');
-        numbersContainer.appendChild(ball);
-    }
 
     function generateUniqueNumbers(count, min, max, exclude = []) {
         const numbers = new Set();

@@ -171,11 +171,23 @@ article {
 /* Lotto Elements */
 .lotto-numbers-container {
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    min-height: 60px;
+}
+
+.lotto-set {
+    display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 2rem;
     flex-wrap: wrap;
-    min-height: 60px;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--toggle-bg);
+}
+
+.lotto-set:last-child {
+    border-bottom: none;
 }
 
 #generate-btn {
@@ -267,6 +279,10 @@ article {
 
 @media (max-width: 768px) {
     .nav-links { display: none; }
+    .hero h1 { font-size: 2rem; }
+    .article-grid { grid-template-columns: 1fr; }
+}
+  .nav-links { display: none; }
     .hero h1 { font-size: 2rem; }
     .article-grid { grid-template-columns: 1fr; }
 }
