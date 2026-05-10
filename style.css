@@ -12,6 +12,7 @@
     --toggle-bg: #e2e8f0;
     --nav-bg: rgba(255, 255, 255, 0.8);
     --tab-inactive: #f1f5f9;
+    --accent-gradient: linear-gradient(135deg, #2563eb, #7c3aed);
 }
 
 [data-theme="dark"] {
@@ -132,16 +133,21 @@ body {
 .main-tab-content.active { display: block; }
 
 /* Home Tab Visuals */
+.hero { text-align: center; padding: 3rem 0; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-color); line-height: 1.2; }
+.hero p { font-size: 1.1rem; color: var(--text-muted); }
+
 .jackpot-ticker {
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: var(--accent-gradient);
     color: white;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 1rem;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-bottom: 2.5rem;
     font-weight: 600;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
 }
 
 .quick-jump { margin-top: 3rem; }
@@ -153,13 +159,13 @@ body {
     box-shadow: 0 10px 20px var(--shadow-color);
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s;
     border: 1px solid var(--toggle-bg);
 }
-.quick-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+.quick-card:hover { transform: translateY(-5px); border-color: var(--primary-color); box-shadow: 0 15px 30px var(--shadow-color); }
 .quick-btn {
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     background: var(--primary-color);
     color: white;
     border: none;
@@ -168,85 +174,141 @@ body {
     cursor: pointer;
 }
 
-/* Generator Advanced Options */
-.advanced-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    text-align: left;
-}
-.opt-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem; }
-.opt-group input {
-    width: 100%; padding: 0.7rem; border-radius: 0.6rem; border: 1px solid var(--toggle-bg);
-    background: var(--background-color); color: var(--text-color);
-}
-
-.luck-message {
-    height: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    color: var(--secondary-color);
-    font-style: italic;
-}
-
-/* Guide Table */
-.table-wrapper { overflow-x: auto; margin: 2rem 0; }
-.guide-table {
-    width: 100%; border-collapse: collapse; background: var(--container-bg);
-    border-radius: 1rem; overflow: hidden;
-}
-.guide-table th, .guide-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--toggle-bg); }
-.guide-table th { background: var(--tab-inactive); color: var(--primary-color); font-weight: 800; }
-
-/* Reuse and Refine Previous Styles */
+/* Generator & General Container */
 .container {
-    background: var(--container-bg); padding: 2.5rem; border-radius: 1.5rem;
-    box-shadow: 0 20px 40px var(--shadow-color); text-align: center; margin-bottom: 3rem;
-}
-
-.lotto-numbers-container { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
-.set-wrapper {
-    background: var(--background-color); padding: 1.5rem; border-radius: 1.2rem;
+    background: var(--container-bg);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px var(--shadow-color);
+    text-align: center;
+    margin-bottom: 3rem;
     border: 1px solid var(--toggle-bg);
 }
-.lotto-set { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
 
-.action-btn {
-    padding: 0.4rem 1rem; border-radius: 0.5rem; border: none;
-    font-weight: 700; font-size: 0.75rem; cursor: pointer;
-    background: var(--toggle-bg); color: var(--text-color);
+.generator-controls { margin-bottom: 2rem; display: flex; justify-content: center; }
+.set-count-wrapper {
+    display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;
+    background: var(--background-color); border-radius: 2rem; border: 1px solid var(--toggle-bg);
+}
+.set-count-wrapper label { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; }
+.set-count-select {
+    padding: 0.2rem 0.5rem; background: transparent; border: none;
+    color: var(--text-color); font-family: var(--font-family); font-weight: 700; cursor: pointer; outline: none;
 }
 
-#generate-btn {
-    background: var(--primary-color); color: white; font-size: 1.1rem; font-weight: 700;
-    padding: 1rem 3.5rem; border: none; border-radius: 0.8rem; cursor: pointer;
+.advanced-options {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; text-align: left;
+}
+.opt-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-muted); }
+.opt-group input {
+    width: 100%; padding: 0.8rem; border-radius: 0.8rem; border: 1px solid var(--toggle-bg);
+    background: var(--background-color); color: var(--text-color); font-family: var(--font-family);
 }
 
-#generate-btn:disabled { opacity: 0.5; }
+.luck-message { height: 1.5rem; margin-bottom: 1.5rem; font-weight: 700; color: var(--secondary-color); }
+
+.stats-box {
+    background: var(--background-color); padding: 1.5rem; border-radius: 1rem; margin-bottom: 2rem; border: 1px solid var(--toggle-bg);
+}
+.stats-box h4 { margin: 0 0 0.5rem 0; color: var(--primary-color); font-size: 1.1rem; }
+.stats-box p { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); }
 
 .results-link {
-    display: inline-block; margin-top: 0.8rem; padding: 0.5rem 1.2rem;
-    color: var(--primary-color); text-decoration: none; border-radius: 0.5rem;
-    font-size: 0.8rem; font-weight: 700; border: 2px solid var(--primary-color);
+    display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem;
+    color: var(--primary-color); text-decoration: none; border-radius: 0.6rem;
+    font-size: 0.85rem; font-weight: 700; border: 2px solid var(--primary-color);
+    transition: all 0.2s;
 }
+.results-link:hover { background: var(--primary-color); color: white; }
 
-/* FAQ */
-.faq-section { margin-top: 3rem; text-align: left; }
-.faq-item { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--toggle-bg); }
-.faq-item h4 { color: var(--primary-color); margin-bottom: 0.5rem; }
+/* Lotto Display */
+.lotto-numbers-container { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+.set-wrapper {
+    background: var(--background-color); padding: 1.5rem; border-radius: 1.2rem;
+    border: 1px solid var(--toggle-bg); animation: fadeIn 0.5s ease;
+}
+.lotto-set { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.set-actions { display: flex; justify-content: center; gap: 1rem; }
+.action-btn {
+    padding: 0.5rem 1.2rem; border-radius: 0.6rem; border: none;
+    font-weight: 700; font-size: 0.8rem; cursor: pointer;
+    background: var(--toggle-bg); color: var(--text-color); transition: all 0.2s;
+}
+.action-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+#generate-btn {
+    background: var(--accent-gradient); color: white; font-size: 1.2rem; font-weight: 800;
+    padding: 1.2rem 4rem; border: none; border-radius: 1rem; cursor: pointer;
+    transition: all 0.3s; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+#generate-btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3); }
+#generate-btn:disabled { opacity: 0.5; }
+
+/* Guide Tab */
+.guide-table { width: 100%; border-collapse: collapse; background: var(--container-bg); border-radius: 1rem; overflow: hidden; margin: 2rem 0; }
+.guide-table th, .guide-table td { padding: 1.2rem; text-align: left; border-bottom: 1px solid var(--toggle-bg); }
+.guide-table th { background: var(--tab-inactive); color: var(--primary-color); font-weight: 800; }
+.guide-info { background: var(--tab-inactive); padding: 2rem; border-radius: 1rem; text-align: left; border-left: 5px solid var(--primary-color); }
+
+/* Premium Contact UI */
+.contact-card { position: relative; overflow: hidden; }
+.contact-card::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--accent-gradient);
+}
+.contact-header-premium { margin-bottom: 2.5rem; }
+.contact-header-premium h2 { font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.premium-form .form-group { text-align: left; }
+.premium-form label { font-weight: 700; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.6rem; display: block; }
+.premium-form input, .premium-form textarea {
+    width: 100%; padding: 1rem; border-radius: 0.8rem; border: 2px solid var(--toggle-bg);
+    background: var(--background-color); color: var(--text-color); font-family: var(--font-family); transition: border-color 0.2s;
+}
+.premium-form input:focus, .premium-form textarea:focus { border-color: var(--primary-color); outline: none; }
+.premium-form textarea { height: 150px; resize: vertical; }
+
+.submit-btn-premium {
+    width: 100%; padding: 1.2rem; border-radius: 1rem; border: none; background: var(--accent-gradient);
+    color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 1rem;
+}
+.submit-btn-premium:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3); }
+
+.faq-container-premium { margin-top: 4rem; text-align: center; }
+.faq-container-premium h3 { font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-color); }
+.faq-grid-premium { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; }
+.faq-card-premium {
+    background: var(--container-bg); padding: 1.5rem; border-radius: 1.2rem;
+    box-shadow: 0 8px 20px var(--shadow-color); border: 1px solid var(--toggle-bg); transition: transform 0.3s;
+}
+.faq-card-premium:hover { transform: translateY(-5px); }
+.faq-card-premium h4 { color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.1rem; }
+.faq-card-premium p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
 
 /* Footer */
-.main-footer { padding: 3rem 0; text-align: center; margin-top: 4rem; }
-.disclaimer { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; padding: 0 1.5rem; }
-.footer-links { list-style: none; display: flex; justify-content: center; gap: 1.5rem; padding: 0; }
-.footer-links a { text-decoration: none; color: var(--text-muted); font-size: 0.85rem; }
+.main-footer { padding: 4rem 0; text-align: center; border-top: 1px solid var(--toggle-bg); margin-top: 5rem; }
+.disclaimer { font-size: 0.85rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 2.5rem; padding: 0 1.5rem; line-height: 1.6; }
+.footer-links { list-style: none; display: flex; justify-content: center; gap: 2rem; padding: 0; }
+.footer-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--primary-color); }
 
+/* Animations */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pop-in { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes roll { 0% { transform: rotate(0deg) translateY(-2px); } 50% { transform: rotate(180deg) translateY(2px); } 100% { transform: rotate(360deg) translateY(-2px); } }
+
+/* Ad Placeholder */
+.ad-placeholder {
+    width: 100%; height: 90px; background: var(--tab-inactive); border-radius: 1rem;
+    margin: 2.5rem 0; display: flex; align-items: center; justify-content: center;
+    border: 2px dashed var(--text-muted); opacity: 0.7;
+}
 
 @media (max-width: 768px) {
     .content-wrapper { padding: 0 1rem; margin-top: 70px; }
-    .quick-grid, .advanced-options { grid-template-columns: 1fr; }
     .hero h1 { font-size: 1.8rem; }
-    .container { padding: 1.5rem 1rem; }
+    .main-tabs { overflow-x: auto; padding: 0.3rem; }
+    .main-tab-btn { font-size: 0.85rem; padding: 0.6rem 0.4rem; min-width: 80px; }
+    .quick-grid, .advanced-options, .form-grid, .faq-grid-premium { grid-template-columns: 1fr; }
+    .container, .contact-card { padding: 1.5rem 1rem; }
 }

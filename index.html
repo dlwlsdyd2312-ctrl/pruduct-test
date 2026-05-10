@@ -155,32 +155,41 @@
 
         <!-- CONTACT TAB -->
         <section id="contact-tab" class="main-tab-content">
-            <div class="contact-container container">
-                <h2 id="contact-header">Get in Touch</h2>
-                <p id="contact-sub">Have a suggestion or found a bug? We'd love to hear from you!</p>
-                <form action="https://formspree.io/f/mwvywbby" method="POST">
-                    <div class="form-group">
-                        <label for="name" id="label-name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" id="label-email">Email</label>
-                        <input type="email" id="email" name="_replyto" required>
+            <div class="contact-card container">
+                <div class="contact-header-premium">
+                    <h2 id="contact-header">Get in Touch</h2>
+                    <p id="contact-sub">Have a suggestion or found a bug? We'd love to hear from you!</p>
+                </div>
+                
+                <form action="https://formspree.io/f/mwvywbby" method="POST" class="premium-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name" id="label-name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" id="label-email">Email</label>
+                            <input type="email" id="email" name="_replyto" required placeholder="Email address">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="message" id="label-msg">Message</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn" id="btn-submit">Send Message</button>
+                    <button type="submit" class="submit-btn-premium" id="btn-submit">
+                        <span id="btn-text">Send Message</span>
+                    </button>
                 </form>
+            </div>
 
-                <div class="faq-section">
-                    <h3 id="faq-header">Frequently Asked Questions</h3>
-                    <div class="faq-item">
+            <div class="faq-container-premium">
+                <h3 id="faq-header">Frequently Asked Questions</h3>
+                <div class="faq-grid-premium">
+                    <div class="faq-card-premium">
                         <h4 id="faq-q1">Is this service free?</h4>
                         <p id="faq-a1">Yes, LottoPro is 100% free to use for everyone.</p>
                     </div>
-                    <div class="faq-item">
+                    <div class="faq-card-premium">
                         <h4 id="faq-q2">Are the numbers truly random?</h4>
                         <p id="faq-a2">We use the Web Crypto API, which provides high-entropy, cryptographically secure random numbers.</p>
                     </div>
