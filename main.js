@@ -199,25 +199,17 @@ const LOTTO_CONFIGS = {
     }
 };
 
+const LUCK_MESSAGES = [
+    "Good Luck!", "Today is your day!", "Believe in your luck!", 
+    "Fortune favors the bold!", "May the odds be in your favor!",
+    "Your lucky numbers are here!", "Jackpot calling?"
+];
+
 class LottoBall extends HTMLElement {
-    static get observedAttributes() {
-        return ['number', 'type', 'label', 'rolling'];
-    }
-
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
-
-    connectedCallback() {
-        this.render();
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue !== newValue) {
-            this.render();
-        }
-    }
+    static get observedAttributes() { return ['number', 'type', 'label', 'rolling']; }
+    constructor() { super(); this.attachShadow({ mode: 'open' }); }
+    connectedCallback() { this.render(); }
+    attributeChangedCallback(name, oldValue, newValue) { if (oldValue !== newValue) this.render(); }
 
     render() {
         const number = this.getAttribute('number') || '';
@@ -226,50 +218,24 @@ class LottoBall extends HTMLElement {
         
         this.shadowRoot.innerHTML = `
             <style>
-                :host {
-                    display: inline-flex;
-                    flex-direction: column;
-                    align-items: center;
-                    margin: 0.3rem;
-                }
+                :host { display: inline-flex; flex-direction: column; align-items: center; margin: 0.3rem; }
                 .ball {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 50%;
-                    background: var(--ball-color, #2563eb);
-                    color: white;
-                    font-size: 1.1rem;
-                    font-weight: 700;
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                    display: flex; justify-content: center; align-items: center;
+                    width: 45px; height: 45px; border-radius: 50%;
+                    background: var(--ball-color, #2563eb); color: white;
+                    font-size: 1.1rem; font-weight: 700; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
                     position: relative;
                     animation: ${rolling ? 'roll 0.2s infinite linear' : 'pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards'};
                 }
-                .label {
-                    font-size: 0.6rem;
-                    color: #64748b;
-                    margin-top: 4px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                }
-                @keyframes pop-in {
-                    0% { transform: scale(0.5); opacity: 0; }
-                    100% { transform: scale(1); opacity: 1; }
-                }
-                @keyframes roll {
-                    0% { transform: rotate(0deg) translateY(-2px); }
-                    50% { transform: rotate(180deg) translateY(2px); }
-                    100% { transform: rotate(360deg) translateY(-2px); }
-                }
+                .label { font-size: 0.6rem; color: #64748b; margin-top: 4px; font-weight: 700; text-transform: uppercase; }
+                @keyframes pop-in { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+                @keyframes roll { 0% { transform: rotate(0deg) translateY(-2px); } 50% { transform: rotate(180deg) translateY(2px); } 100% { transform: rotate(360deg) translateY(-2px); } }
             </style>
             <div class="ball">${number}</div>
             ${label ? `<div class="label">${label}</div>` : ''}
         `;
     }
 }
-
 customElements.define('lotto-ball', LottoBall);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -278,12 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const countrySelect = document.getElementById('country-select');
     const numbersContainer = document.getElementById('lotto-numbers');
     const generateBtn = document.getElementById('generate-btn');
+    const mainTabBtns = document.querySelectorAll('.main-tab-btn');
+    const mainTabContents = document.querySelectorAll('.main-tab-content');
 
     // Theme Logic
     const savedTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-
     themeToggle.addEventListener('click', () => {
         const currentTheme = html.getAttribute('data-theme');
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -291,122 +257,77 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
     });
-
     function updateThemeIcon(theme) {
         const icon = themeToggle.querySelector('.icon');
         if (icon) icon.textContent = theme === 'light' ? '🌙' : '☀️';
     }
+    updateThemeIcon(savedTheme);
 
-    // Internationalization Logic
+    // Tab Logic
+    mainTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-main-tab');
+            mainTabBtns.forEach(b => b.classList.remove('active'));
+            mainTabContents.forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(target).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // Internationalization & UI
     let currentConfig = LOTTO_CONFIGS.us_pb;
     countrySelect.value = 'us_pb';
-
     countrySelect.addEventListener('change', (e) => {
-        const key = e.target.value;
-        currentConfig = LOTTO_CONFIGS[key];
+        currentConfig = LOTTO_CONFIGS[e.target.value];
         updateUI();
     });
 
     function updateUI() {
         const t = currentConfig.texts;
         const m = currentConfig.meta;
-        
         document.title = m.title;
         document.querySelector('meta[name="description"]')?.setAttribute('content', m.description);
-        
-        document.querySelector('.hero h1').textContent = t.heroTitle;
-        document.querySelector('.hero p').textContent = t.heroSub;
-        document.querySelector('#generator h2').textContent = t.genTitle;
+        document.getElementById('gen-title-text').textContent = t.genTitle;
         generateBtn.textContent = t.genBtn;
-        
-        // Update Tabs Text
-        const tabGuide = document.querySelector('.tab-btn[data-tab="guide"]');
-        const tabStats = document.querySelector('.tab-btn[data-tab="stats"]');
-        const tabStrategy = document.querySelector('.tab-btn[data-tab="strategy"]');
-        if (tabGuide) tabGuide.textContent = currentConfig.lang === 'ko' ? '가이드' : (currentConfig.lang === 'ja' ? 'ガイド' : 'Guide');
-        if (tabStats) tabStats.textContent = currentConfig.lang === 'ko' ? '통계분석' : (currentConfig.lang === 'ja' ? '統計分析' : 'Analysis');
-        if (tabStrategy) tabStrategy.textContent = currentConfig.lang === 'ko' ? '전략팁' : (currentConfig.lang === 'ja' ? '戦略' : 'Strategy');
-
-        document.querySelector('#guide h3').textContent = t.guideTitle;
-        document.getElementById('guide-desc').textContent = t.guideText;
-        document.querySelector('#stats h3').textContent = t.statsTitle;
-        document.getElementById('stats-desc').textContent = t.probText;
-        document.querySelector('#strategy h3').textContent = t.stratTitle;
-        document.getElementById('strategy-desc').textContent = t.stratText;
-        
-        // FAQ content update
-        const faqData = {
-            ko: { q1: '정말 무작위인가요?', a1: '네, 브라우저의 보안 난수 생성기를 사용합니다.', q2: '당첨을 보장하나요?', a2: '아니요, 오락 및 번호 조합 도우미일 뿐입니다.' },
-            ja: { q1: '本当にランダムですか？', a1: 'はい、安全な疑似乱数生成器を使用しています。', q2: '当選は保証されますか？', a2: 'いいえ、エンターテインメント目的のツールです。' },
-            en: { q1: 'Is it truly random?', a1: 'Yes, we use secure PRNG algorithms.', q2: 'Does this guarantee a win?', a2: 'No, this is for entertainment purposes only.' }
-        };
-        const faq = faqData[currentConfig.lang] || faqData.en;
-        document.getElementById('faq-q1').textContent = faq.q1;
-        document.getElementById('faq-a1').textContent = faq.a1;
-        document.getElementById('faq-q2').textContent = faq.q2;
-        document.getElementById('faq-a2').textContent = faq.a2;
-
-        document.querySelector('#contact h2').textContent = t.contactTitle;
-        document.querySelector('#contact p').textContent = t.contactSub;
-        document.querySelector('.submit-btn').textContent = t.submitBtn;
-
-        // Statistics & Links
         document.getElementById('stats-title').textContent = t.statsTitle;
         document.getElementById('stats-data').textContent = currentConfig.stats;
         const resultsLink = document.getElementById('results-link');
         resultsLink.textContent = t.checkResults;
         resultsLink.href = currentConfig.resultsUrl;
-        
-        document.querySelectorAll('.ad-placeholder-text').forEach(el => el.textContent = t.adPlaceholder);
-        document.getElementById('name').placeholder = currentConfig.lang === 'ko' ? '이름' : (currentConfig.lang === 'ja' ? '名前' : 'Your Name');
-        
         numbersContainer.innerHTML = '';
     }
 
-    // Tab Logic
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const tabId = btn.getAttribute('data-tab');
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabPanes.forEach(p => p.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        });
-    });
-
     generateBtn.addEventListener('click', () => {
         const setCount = parseInt(document.getElementById('set-count').value);
+        const excludeInput = document.getElementById('exclude-nums').value;
+        const includeInput = document.getElementById('include-nums').value;
+        const luckMsg = document.getElementById('luck-message');
+        
+        const exclude = excludeInput.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+        const include = includeInput.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+
         numbersContainer.innerHTML = '';
         generateBtn.disabled = true;
+        luckMsg.textContent = LUCK_MESSAGES[Math.floor(Math.random() * LUCK_MESSAGES.length)];
         
         for (let i = 0; i < setCount; i++) {
             const setWrapper = document.createElement('div');
             setWrapper.className = 'set-wrapper';
-            
             const setDiv = document.createElement('div');
             setDiv.className = 'lotto-set';
-            
             const actionsDiv = document.createElement('div');
             actionsDiv.className = 'set-actions';
             
             const copyBtn = document.createElement('button');
-            copyBtn.className = 'action-btn copy-btn';
+            copyBtn.className = 'action-btn';
             copyBtn.textContent = currentConfig.texts.copyBtn;
 
-            const shareBtn = document.createElement('button');
-            shareBtn.className = 'action-btn share-btn';
-            shareBtn.textContent = currentConfig.texts.shareBtn;
-
             actionsDiv.appendChild(copyBtn);
-            actionsDiv.appendChild(shareBtn);
             setWrapper.appendChild(setDiv);
             setWrapper.appendChild(actionsDiv);
             numbersContainer.appendChild(setWrapper);
 
-            // Initial Animation
             for(let k=0; k<currentConfig.mainCount + currentConfig.bonusCount; k++) {
                 const dummyBall = document.createElement('lotto-ball');
                 dummyBall.setAttribute('number', '?');
@@ -414,11 +335,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 setDiv.appendChild(dummyBall);
             }
 
-            const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
+            const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange, exclude, include);
             let bonusNumbers = [];
             if (currentConfig.bonusCount > 0) {
-                const exclude = currentConfig.separateBonusPool ? [] : mainNumbers;
-                bonusNumbers = generateUniqueNumbers(currentConfig.bonusCount, 1, currentConfig.bonusRange, exclude);
+                const bExclude = currentConfig.separateBonusPool ? [] : [...mainNumbers, ...exclude];
+                bonusNumbers = generateUniqueNumbers(currentConfig.bonusCount, 1, currentConfig.bonusRange, bExclude);
             }
 
             setTimeout(() => {
@@ -441,9 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         setDiv.appendChild(ball);
                     }, (currentConfig.mainCount + index) * 50);
                 });
-                
                 if (i === setCount - 1) generateBtn.disabled = false;
-            }, 800 + (i * 100));
+            }, 800);
 
             copyBtn.addEventListener('click', () => {
                 const text = `${currentConfig.lottoName}: ${mainNumbers.join(', ')}${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}`;
@@ -452,20 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => copyBtn.textContent = currentConfig.texts.copyBtn, 2000);
                 });
             });
-
-            shareBtn.addEventListener('click', () => {
-                const text = `My Lucky ${currentConfig.lottoName} Numbers: ${mainNumbers.join(', ')}`;
-                if (navigator.share) {
-                    navigator.share({ title: 'LottoPro', text: text, url: window.location.href });
-                } else {
-                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' ' + window.location.href)}`, '_blank');
-                }
-            });
         }
     });
 
-    function generateUniqueNumbers(count, min, max, exclude = []) {
+    function generateUniqueNumbers(count, min, max, exclude = [], include = []) {
         const numbers = new Set();
+        include.forEach(n => { if(n >= min && n <= max && numbers.size < count) numbers.add(n); });
         while (numbers.size < count) {
             const num = Math.floor(Math.random() * (max - min + 1)) + min;
             if (!exclude.includes(num)) numbers.add(num);

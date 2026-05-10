@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-5192540925886631">
-    <meta name="description" content="LottoPro - The ultimate global lottery number generator with statistical insights and official results.">
-    <title>LottoPro - Global Lottery Number Generator</title>
+    <meta name="description" content="LottoPro - Professional Global Lottery Generator. Generate lucky numbers for Powerball, EuroMillions, Lotto 6/45 and more with statistical insights.">
+    <title>LottoPro - Global Lottery Number Generator & Results</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5192540925886631"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
@@ -14,19 +14,13 @@
     <header class="main-header">
         <nav class="navbar">
             <div class="logo">LottoPro</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#generator">Generator</a></li>
-                <li><a href="#guide">Guide</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
             <div class="nav-controls">
                 <select id="country-select" class="country-select">
-                    <option value="kr">South Korea (로또 6/45)</option>
-                    <option value="us_pb">USA (Powerball)</option>
-                    <option value="uk">United Kingdom (6/59)</option>
-                    <option value="jp_l7">Japan (ロト7)</option>
-                    <option value="eu_em">Europe (EuroMillions)</option>
+                    <option value="us_pb">🇺🇸 USA (Powerball)</option>
+                    <option value="kr">🇰🇷 South Korea (6/45)</option>
+                    <option value="uk">🇬🇧 United Kingdom (6/59)</option>
+                    <option value="jp_l7">🇯🇵 Japan (Loto 7)</option>
+                    <option value="eu_em">🇪🇺 Europe (EuroMillions)</option>
                 </select>
                 <button id="theme-toggle" title="Toggle Dark/Light Mode">
                     <span class="icon">🌙</span>
@@ -36,104 +30,173 @@
     </header>
 
     <main class="content-wrapper">
-        <section id="home" class="hero">
-            <h1>Expert Lotto Number Generator</h1>
-            <p>Your reliable companion for random number selection. Scientifically random, visually stunning.</p>
-        </section>
-
-        <div class="ad-placeholder ad-top">
-            <span class="ad-placeholder-text">Advertisement</span>
+        <!-- Main Navigation Tabs -->
+        <div class="main-tabs">
+            <button class="main-tab-btn active" data-main-tab="home-tab">🏠 Home</button>
+            <button class="main-tab-btn" data-main-tab="generator-tab">🎰 Generator</button>
+            <button class="main-tab-btn" data-main-tab="guide-tab">📖 Guide</button>
+            <button class="main-tab-btn" data-main-tab="contact-tab">📧 Contact</button>
         </div>
 
-        <section id="generator" class="container">
-            <h2>Generate Your Lucky Numbers</h2>
-            <div class="generator-controls">
-                <div class="set-count-wrapper">
-                    <label for="set-count">How many sets?</label>
-                    <select id="set-count" class="set-count-select">
-                        <option value="1">1 Set</option>
-                        <option value="2">2 Sets</option>
-                        <option value="3">3 Sets</option>
-                        <option value="4">4 Sets</option>
-                        <option value="5">5 Sets</option>
-                        <option value="10">10 Sets</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="stats-box">
-                <h4 id="stats-title">Statistics</h4>
-                <p id="stats-data">Loading statistics...</p>
-                <a href="#" id="results-link" target="_blank" class="results-link">Check Official Results</a>
+        <!-- HOME TAB -->
+        <section id="home-tab" class="main-tab-content active">
+            <div class="hero">
+                <h1>Generate your lucky numbers for Powerball, Mega Millions, and more!</h1>
+                <p>Your scientifically random companion for global lotteries.</p>
             </div>
 
-            <div id="lotto-numbers" class="lotto-numbers-container"></div>
-            <button id="generate-btn">Generate Numbers</button>
+            <div class="jackpot-ticker">
+                <div class="ticker-item">💰 Current Powerball Jackpot: <strong>$125 Million</strong></div>
+                <div class="ticker-item">🔥 Recent Winner: <strong>New York, USA</strong></div>
+            </div>
+
+            <div class="quick-jump">
+                <h3>Quick Jump - Popular Lotteries</h3>
+                <div class="quick-grid">
+                    <div class="quick-card" onclick="document.querySelector('[data-main-tab=generator-tab]').click();">
+                        <h4>🇺🇸 Powerball</h4>
+                        <p>5/69 + 1/26</p>
+                        <button class="quick-btn">Go to Generator</button>
+                    </div>
+                    <div class="quick-card" onclick="document.querySelector('[data-main-tab=generator-tab]').click();">
+                        <h4>🇪🇺 EuroMillions</h4>
+                        <p>5/50 + 2/12</p>
+                        <button class="quick-btn">Go to Generator</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <div class="ad-placeholder ad-middle">
-            <span class="ad-placeholder-text">Advertisement</span>
-        </div>
+        <!-- GENERATOR TAB -->
+        <section id="generator-tab" class="main-tab-content">
+            <div class="container">
+                <h2 id="gen-title-text">Generate Your Lucky Numbers</h2>
+                
+                <div class="generator-controls">
+                    <div class="set-count-wrapper">
+                        <label for="set-count">Sets:</label>
+                        <select id="set-count" class="set-count-select">
+                            <option value="1">1 Set</option>
+                            <option value="2">2 Sets</option>
+                            <option value="3">3 Sets</option>
+                            <option value="5">5 Sets</option>
+                            <option value="10">10 Sets</option>
+                        </select>
+                    </div>
+                </div>
 
-        <section id="info-tabs" class="tabs-container">
-            <div class="tabs-header">
-                <button class="tab-btn active" data-tab="guide">Guide</button>
-                <button class="tab-btn" data-tab="stats">Analysis</button>
-                <button class="tab-btn" data-tab="strategy">Strategy</button>
-                <button class="tab-btn" data-tab="faq">FAQ</button>
+                <div class="advanced-options">
+                    <div class="opt-group">
+                        <label>Exclude Numbers:</label>
+                        <input type="text" id="exclude-nums" placeholder="e.g. 4, 13, 44">
+                    </div>
+                    <div class="opt-group">
+                        <label>Include Numbers:</label>
+                        <input type="text" id="include-nums" placeholder="e.g. 7, 21">
+                    </div>
+                </div>
+                
+                <div id="luck-message" class="luck-message"></div>
+
+                <div class="stats-box">
+                    <h4 id="stats-title">Statistics</h4>
+                    <p id="stats-data">Loading statistics...</p>
+                    <a href="#" id="results-link" target="_blank" class="results-link">Check Official Results</a>
+                </div>
+
+                <div id="lotto-numbers" class="lotto-numbers-container"></div>
+                <button id="generate-btn">Generate Numbers</button>
             </div>
-            <div class="tabs-content">
-                <div id="guide" class="tab-pane active">
-                    <h3>How It Works</h3>
-                    <p id="guide-desc">Our generator uses a cryptographically secure pseudo-random number generator to ensure that every draw is independent and fair.</p>
+        </section>
+
+        <!-- GUIDE TAB -->
+        <section id="guide-tab" class="main-tab-content">
+            <div class="guide-container container">
+                <h2>Global Lottery Guide</h2>
+                <div class="table-wrapper">
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Lottery</th>
+                                <th>Format</th>
+                                <th>Jackpot Odds</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>USA Powerball</td>
+                                <td>5/69 + 1/26</td>
+                                <td>1 in 292,201,338</td>
+                            </tr>
+                            <tr>
+                                <td>EuroMillions</td>
+                                <td>5/50 + 2/12</td>
+                                <td>1 in 139,838,160</td>
+                            </tr>
+                            <tr>
+                                <td>UK Lotto</td>
+                                <td>6/59</td>
+                                <td>1 in 45,057,474</td>
+                            </tr>
+                            <tr>
+                                <td>Korea 6/45</td>
+                                <td>6/45</td>
+                                <td>1 in 8,145,060</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div id="stats" class="tab-pane">
-                    <h3>Statistical Analysis</h3>
-                    <p id="stats-desc">Understanding the odds is key. Every combination has an equal chance, but our tool helps you pick without bias by analyzing historical data patterns.</p>
+                <div class="guide-info">
+                    <h3>💡 Pro Tip for Foreigners</h3>
+                    <p>If you win while abroad, most lotteries require you to claim the prize in the same state/country where the ticket was purchased. Always check the official website linked in our Results section!</p>
                 </div>
-                <div id="strategy" class="tab-pane">
-                    <h3>Strategy Tips</h3>
-                    <p id="strategy-desc">Avoid common patterns like all evens or all odds. Balanced selections are more aesthetically pleasing and statistically common in long-term draws.</p>
-                </div>
-                <div id="faq" class="tab-pane">
+            </div>
+        </section>
+
+        <!-- CONTACT TAB -->
+        <section id="contact-tab" class="main-tab-content">
+            <div class="contact-container container">
+                <h2>Get in Touch</h2>
+                <p>Have a suggestion or found a bug? We'd love to hear from you!</p>
+                <form action="https://formspree.io/f/xwvywojg" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="_replyto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <div class="faq-section">
                     <h3>Frequently Asked Questions</h3>
                     <div class="faq-item">
-                        <h4 id="faq-q1">Is it truly random?</h4>
-                        <p id="faq-a1">Yes, we use the standard Web Crypto API to generate high-entropy random numbers.</p>
+                        <h4>Is this service free?</h4>
+                        <p>Yes, LottoPro is 100% free to use for everyone.</p>
                     </div>
                     <div class="faq-item">
-                        <h4 id="faq-q2">Does this guarantee a win?</h4>
-                        <p id="faq-a2">No. Lottery is a game of pure chance. This tool is for entertainment and organization only.</p>
+                        <h4>Are the numbers truly random?</h4>
+                        <p>We use the Web Crypto API, which provides high-entropy, cryptographically secure random numbers.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-container">
-            <h2>Partnership & Inquiry</h2>
-            <p>Interested in collaborating or have a question? Drop us a message below.</p>
-            <form action="https://formspree.io/f/xwvywojg" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Your Name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="_replyto" required placeholder="your@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required placeholder="Describe your inquiry..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Inquiry</button>
-            </form>
-        </section>
+        <div class="ad-placeholder ad-bottom">
+            <span class="ad-placeholder-text">Advertisement Space</span>
+        </div>
     </main>
 
     <footer class="main-footer">
         <div class="footer-content">
             <div class="disclaimer">
-                <p><strong>Disclaimer:</strong> This Lotto Number Generator is provided for entertainment purposes only. The numbers generated are purely random and do not guarantee any winnings or success in actual lottery draws. We are not affiliated with, authorized, or endorsed by any official lottery organization. Please play responsibly.</p>
+                <p><strong>Disclaimer:</strong> This Lotto Number Generator is provided for entertainment purposes only. The numbers generated are purely random and do not guarantee any winnings. Please play responsibly.</p>
             </div>
             <p>&copy; 2026 LottoPro. All rights reserved.</p>
             <ul class="footer-links">
