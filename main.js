@@ -58,6 +58,28 @@ customElements.define('lotto-ball', LottoBall);
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const icon = themeToggle.querySelector('.icon');
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        icon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
     document.getElementById('generate-btn').addEventListener('click', () => {
         const numbersContainer = document.getElementById('lotto-numbers');
         numbersContainer.innerHTML = '';
