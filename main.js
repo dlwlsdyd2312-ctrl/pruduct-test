@@ -117,19 +117,19 @@ const LOTTO_CONFIGS = {
         texts: {
             title: 'ロト番号生成器 - ロト7 当選番号確認と統計',
             heroTitle: 'ロト7 専門番号生成器',
-            heroSub: 'あなたの幸運のための信頼できるパートナー。科学的なランダム抽出と洗練된 디자인。',
-            genTitle: '幸運の番号を生成',
-            genBtn: '番号を生成する',
-            guideTitle: 'アルゴリズム',
-            guideText: '当生成器は高度な疑似乱数生成器を使用し、各抽選の公平性を保証します。',
+            heroSub: 'あなたの幸運のための信頼できるパートナー。과학적인 랜덤 추출과 세련된 디자인.',
+            genTitle: '행운의 번호 추출하기',
+            genBtn: '번호 생성하기',
+            guideTitle: '알고리즘',
+            guideText: '当生成器は高度な疑似乱数生成器を使用し、各抽選の公平성을 보장합니다.',
             probTitle: '統計分析',
-            probText: '過去の抽選データを分析し、出現頻度の高い数字パターンを提供します。',
-            stratTitle: '戦略的選択',
-            stratText: '数学的なバランスを考慮し、当選確率を高める組み合わせを提案します。',
+            probText: '過去의 抽選 데이터를 분석하여 출현 빈도가 높은 숫자 패턴을 제공합니다.',
+            stratTitle: '전략적 선택',
+            stratText: '수학적 균형을 고려하여 당첨 확률을 높이는 조합을 제안합니다.',
             aboutTitle: 'LottoProについて',
-            aboutText: 'LottoProは、世界中のロト데이터에 기반한 전문적인 서비스를 제공합니다.',
+            aboutText: 'LottoPro는 전 세계 로또 데이터를 기반으로 한 전문적인 서비스를 제공합니다.',
             contactTitle: 'お問い合わせ',
-            contactSub: '提携이나 질문은 아래 폼을 이용해 주세요.',
+            contactSub: '제휴나 질문은 아래 폼을 이용해 주세요.',
             submitBtn: '送信する',
             checkResults: '当選番号を確認する',
             statsTitle: '統計データ',
@@ -235,7 +235,7 @@ class LottoBall extends HTMLElement {
                 }
             </style>
             <div class="ball">${number}</div>
-            ${label ? \`<div class="label">\${label}</div>\` : ''}
+            ${label ? `<div class="label">${label}</div>` : ''}
         `;
     }
 }
@@ -363,8 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             numbersContainer.appendChild(setWrapper);
 
             const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
-            const allNumbers = [...mainNumbers];
-
+            
             // Render Main Balls
             mainNumbers.forEach((num, index) => {
                 setTimeout(() => {
@@ -396,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Copy logic
             copyBtn.addEventListener('click', () => {
-                const text = \`\${currentConfig.lottoName}: \${mainNumbers.join(', ')}\${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}\`;
+                const text = `${currentConfig.lottoName}: ${mainNumbers.join(', ')}${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}`;
                 navigator.clipboard.writeText(text).then(() => {
                     copyBtn.textContent = currentConfig.texts.copySuccess;
                     copyBtn.classList.add('copied');
