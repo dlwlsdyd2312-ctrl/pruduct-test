@@ -79,6 +79,24 @@ body {
     color: var(--primary-color);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.country-select {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--toggle-bg);
+    background: var(--container-bg);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
 #theme-toggle {
     background: var(--toggle-bg);
     border: none;
