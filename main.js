@@ -2,16 +2,19 @@ const LOTTO_CONFIGS = {
     kr: {
         name: 'South Korea',
         lang: 'ko',
-        lottoName: 'Lotto 6/45',
+        lottoName: '로또 6/45',
         mainCount: 6,
         mainRange: 45,
         bonusCount: 1,
         bonusRange: 45,
         separateBonusPool: false,
         resultsUrl: 'https://www.dhlottery.co.kr/common.do?method=main',
-        stats: 'Commonly drawn: 1, 18, 27, 34, 43, 45',
+        stats: '자주 나오는 번호: 1, 18, 27, 34, 43, 45',
+        meta: {
+            title: '로또 번호 생성기 - 이번 주 당첨 번호 확인 및 통계 분석',
+            description: '글로벌 로또 번호 생성기입니다. 한국 로또 6/45, 미국 파워볼, 일본 로또 7 등의 번호를 통계 기반으로 생성하고 공식 당첨 결과를 확인하세요.'
+        },
         texts: {
-            title: '로또 번호 생성기 - 이번 주 당첨 번호 확인 및 통계',
             heroTitle: '엑스퍼트 로또 번호 생성기',
             heroSub: '당신의 행운을 위한 신뢰할 수 있는 동반자. 과학적 랜덤 추출과 세련된 디자인.',
             genTitle: '행운의 번호 추출하기',
@@ -27,10 +30,12 @@ const LOTTO_CONFIGS = {
             contactTitle: '제휴 및 문의',
             contactSub: '협업이나 문의 사항이 있으신가요? 아래에 메시지를 남겨주세요.',
             submitBtn: '문의 보내기',
-            checkResults: '당첨 번호 확인하기',
+            checkResults: '공식 당첨 번호 확인하기',
             statsTitle: '통계 데이터',
             copyBtn: '번호 복사',
-            copySuccess: '복사 완료!'
+            copySuccess: '복사 완료!',
+            shareBtn: '공유하기',
+            adPlaceholder: '광고 영역'
         }
     },
     us_pb: {
@@ -45,8 +50,11 @@ const LOTTO_CONFIGS = {
         separateBonusPool: true,
         resultsUrl: 'https://www.powerball.com/draw-results',
         stats: 'Most frequent numbers: 32, 39, 61, 63, 69',
+        meta: {
+            title: 'LottoPro - Global Powerball Generator & Official Results',
+            description: 'The ultimate global lotto number generator. Get Powerball, Mega Millions, and international lottery numbers with statistical insights.'
+        },
         texts: {
-            title: 'LottoPro - Powerball Generator & Results',
             heroTitle: 'Expert Powerball Generator',
             heroSub: 'Your reliable companion for random number selection. Scientifically random, visually stunning.',
             genTitle: 'Generate Your Lucky Numbers',
@@ -64,8 +72,10 @@ const LOTTO_CONFIGS = {
             submitBtn: 'Send Inquiry',
             checkResults: 'Check Official Results',
             statsTitle: 'Live Statistics',
-            copyBtn: 'Copy Numbers',
-            copySuccess: 'Copied!'
+            copyBtn: 'Copy Set',
+            copySuccess: 'Copied!',
+            shareBtn: 'Share',
+            adPlaceholder: 'Sponsored Content'
         }
     },
     uk: {
@@ -80,8 +90,11 @@ const LOTTO_CONFIGS = {
         separateBonusPool: false,
         resultsUrl: 'https://www.national-lottery.co.uk/results',
         stats: 'Hot numbers: 23, 38, 41, 49, 52, 58',
+        meta: {
+            title: 'UK Lotto Generator - National Lottery Results & Statistics',
+            description: 'Generate UK National Lottery numbers and check the latest results. Statistical analysis for the best lottery combinations.'
+        },
         texts: {
-            title: 'UK Lotto Generator - National Lottery Results',
             heroTitle: 'UK Lotto Number Generator',
             heroSub: 'Generate your lucky numbers for the UK National Lottery with confidence.',
             genTitle: 'Get Your Lucky Numbers',
@@ -100,13 +113,15 @@ const LOTTO_CONFIGS = {
             checkResults: 'Check UK Lotto Results',
             statsTitle: 'Lotto Statistics',
             copyBtn: 'Copy Set',
-            copySuccess: 'Saved to Clipboard'
+            copySuccess: 'Saved!',
+            shareBtn: 'Share',
+            adPlaceholder: 'Advertisement'
         }
     },
     jp_l7: {
         name: 'Japan',
         lang: 'ja',
-        lottoName: 'Loto 7',
+        lottoName: 'ロト7 (Loto 7)',
         mainCount: 7,
         mainRange: 37,
         bonusCount: 2,
@@ -114,27 +129,32 @@ const LOTTO_CONFIGS = {
         separateBonusPool: false,
         resultsUrl: 'https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/loto7/index.html',
         stats: '出現頻度の高い数字: 13, 15, 21, 26, 30, 32, 34',
+        meta: {
+            title: 'ロト番号生成器 - ロト7 当選番号確認と最新統計分析',
+            description: '日本と世界のロト番号生成ツール。ロト7、ロト6、パワーボール等の当選確率を高める統計的アプローチを提供します。'
+        },
         texts: {
-            title: 'ロト番号生成器 - ロト7 当選番号確認と統計',
-            heroTitle: 'ロト7 専門番号生成器',
-            heroSub: 'あなたの幸運のための信頼できるパートナー。과학적인 랜덤 추출과 세련된 디자인.',
-            genTitle: '행운의 번호 추출하기',
-            genBtn: '번호 생성하기',
-            guideTitle: '알고리즘',
-            guideText: '当生成器は高度な疑似乱数生成器を使用し、各抽選の公平성을 보장합니다.',
-            probTitle: '統計分析',
-            probText: '過去의 抽選 데이터를 분석하여 출현 빈도가 높은 숫자 패턴을 제공합니다.',
-            stratTitle: '전략적 선택',
-            stratText: '수학적 균형을 고려하여 당첨 확률을 높이는 조합을 제안합니다.',
-            aboutTitle: 'LottoProについて',
-            aboutText: 'LottoPro는 전 세계 로또 데이터를 기반으로 한 전문적인 서비스를 제공합니다.',
-            contactTitle: 'お問い合わせ',
-            contactSub: '제휴나 질문은 아래 폼을 이용해 주세요.',
+            heroTitle: 'プロフェッショナル・ロト番号生成器',
+            heroSub: 'あなたの幸運をサポートする信頼のパートナー。科学的な乱数抽出と洗練されたデザイン。',
+            genTitle: '幸運の番号を抽出する',
+            genBtn: '番号を生成する',
+            guideTitle: '仕組みについて',
+            guideText: '当生成器は、各回の独立性と公平性を保証するため、暗号学的に安全な疑似乱数生成器を使用しています。',
+            probTitle: '統計的分析',
+            probText: '最新の抽選データを分析し、最も出現頻度の高い番号パターンを提供します。',
+            stratTitle: '戦略的な選択',
+            stratText: '数学的なバランスを考慮した番号の組み合わせにより、当選確率の向上を目指します。',
+            aboutTitle: 'LottoProのサービス',
+            aboutText: 'LottoProは世界中のロトデータに基づき、クリーンなUIとプライバシー保護を最優先しています。',
+            contactTitle: '提携・お問い合わせ',
+            contactSub: '提携やご質問がございましたら、以下のフォームよりご連絡ください。',
             submitBtn: '送信する',
-            checkResults: '当選番号を確認する',
-            statsTitle: '統計データ',
+            checkResults: '公式サイトで当選番号を確認',
+            statsTitle: '最新統計データ',
             copyBtn: 'コピー',
-            copySuccess: 'コピーしました！'
+            copySuccess: 'コピー完了！',
+            shareBtn: '共有する',
+            adPlaceholder: '広告エリア'
         }
     },
     eu_em: {
@@ -149,8 +169,11 @@ const LOTTO_CONFIGS = {
         separateBonusPool: true,
         resultsUrl: 'https://www.euro-millions.com/results',
         stats: 'Frequent stars: 3, 9 | Main: 17, 21, 42, 44, 50',
+        meta: {
+            title: 'EuroMillions Generator - Results, Stats & Predictions',
+            description: 'The ultimate tool for EuroMillions players. Generate random numbers based on statistics and check official results.'
+        },
         texts: {
-            title: 'EuroMillions Generator - Results & Stats',
             heroTitle: 'EuroMillions Lucky Pick',
             heroSub: 'The ultimate tool for European lottery players with full statistics.',
             genTitle: 'Generate EuroMillions Sets',
@@ -166,17 +189,19 @@ const LOTTO_CONFIGS = {
             contactTitle: 'Partnership',
             contactSub: 'Reach out for international business opportunities.',
             submitBtn: 'Send Message',
-            checkResults: 'Official Results',
-            statsTitle: 'Star Stats',
+            checkResults: 'Check Official Results',
+            statsTitle: 'Star Statistics',
             copyBtn: 'Copy',
-            copySuccess: 'Done!'
+            copySuccess: 'Done!',
+            shareBtn: 'Share',
+            adPlaceholder: 'Ads'
         }
     }
 };
 
 class LottoBall extends HTMLElement {
     static get observedAttributes() {
-        return ['number', 'type', 'label'];
+        return ['number', 'type', 'label', 'rolling'];
     }
 
     constructor() {
@@ -198,6 +223,7 @@ class LottoBall extends HTMLElement {
         const number = this.getAttribute('number') || '';
         const type = this.getAttribute('type') || 'main';
         const label = this.getAttribute('label') || '';
+        const rolling = this.hasAttribute('rolling');
         
         this.shadowRoot.innerHTML = `
             <style>
@@ -219,8 +245,8 @@ class LottoBall extends HTMLElement {
                     font-size: 1.1rem;
                     font-weight: 700;
                     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                    animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
                     position: relative;
+                    ${rolling ? 'animation: roll 0.2s infinite linear;' : 'animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;'}
                 }
                 .label {
                     font-size: 0.6rem;
@@ -233,9 +259,14 @@ class LottoBall extends HTMLElement {
                     0% { transform: scale(0.5); opacity: 0; }
                     100% { transform: scale(1); opacity: 1; }
                 }
+                @keyframes roll {
+                    0% { transform: rotate(0deg) translateY(-2px); }
+                    50% { transform: rotate(180deg) translateY(2px); }
+                    100% { transform: rotate(360deg) translateY(-2px); }
+                }
             </style>
             <div class="ball">${number}</div>
-            ${label ? `<div class="label">${label}</div>` : ''}
+            ${label ? \`<div class="label">\${label}</div>\` : ''}
         `;
     }
 }
@@ -279,7 +310,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateUI() {
         const t = currentConfig.texts;
-        document.title = t.title;
+        const m = currentConfig.meta;
+        
+        // SEO & Titles
+        document.title = m.title;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', m.description);
+        
         document.querySelector('.hero h1').textContent = t.heroTitle;
         document.querySelector('.hero p').textContent = t.heroSub;
         document.querySelector('#generator h2').textContent = t.genTitle;
@@ -320,6 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultsLink = document.getElementById('results-link');
         resultsLink.textContent = t.checkResults;
         resultsLink.href = currentConfig.resultsUrl;
+        
+        // Ad placeholders
+        document.querySelectorAll('.ad-placeholder-text').forEach(el => el.textContent = t.adPlaceholder);
 
         // Form placeholders
         document.getElementById('name').placeholder = currentConfig.lang === 'ko' ? '이름' : (currentConfig.lang === 'ja' ? '名前' : 'Your Name');
@@ -334,10 +373,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const tabId = btn.getAttribute('data-tab');
-            
             tabBtns.forEach(b => b.classList.remove('active'));
             tabPanes.forEach(p => p.classList.remove('active'));
-            
             btn.classList.add('active');
             document.getElementById(tabId).classList.add('active');
         });
@@ -346,6 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
     generateBtn.addEventListener('click', () => {
         const setCount = parseInt(document.getElementById('set-count').value);
         numbersContainer.innerHTML = '';
+        generateBtn.disabled = true;
         
         for (let i = 0; i < setCount; i++) {
             const setWrapper = document.createElement('div');
@@ -354,56 +392,86 @@ document.addEventListener('DOMContentLoaded', () => {
             const setDiv = document.createElement('div');
             setDiv.className = 'lotto-set';
             
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'set-actions';
+            
             const copyBtn = document.createElement('button');
-            copyBtn.className = 'copy-set-btn';
+            copyBtn.className = 'action-btn copy-btn';
             copyBtn.textContent = currentConfig.texts.copyBtn;
 
+            const shareBtn = document.createElement('button');
+            shareBtn.className = 'action-btn share-btn';
+            shareBtn.textContent = currentConfig.texts.shareBtn;
+
+            actionsDiv.appendChild(copyBtn);
+            actionsDiv.appendChild(shareBtn);
             setWrapper.appendChild(setDiv);
-            setWrapper.appendChild(copyBtn);
+            setWrapper.appendChild(actionsDiv);
             numbersContainer.appendChild(setWrapper);
 
-            const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
-            
-            // Render Main Balls
-            mainNumbers.forEach((num, index) => {
-                setTimeout(() => {
-                    const ball = document.createElement('lotto-ball');
-                    ball.setAttribute('number', num);
-                    ball.setAttribute('type', 'main');
-                    ball.style.setProperty('--ball-color', getBallColor(num));
-                    setDiv.appendChild(ball);
-                }, (i * 100) + (index * 50));
-            });
+            // Initial Rolling Effect
+            for(let k=0; k<currentConfig.mainCount + currentConfig.bonusCount; k++) {
+                const dummyBall = document.createElement('lotto-ball');
+                dummyBall.setAttribute('number', '?');
+                dummyBall.setAttribute('rolling', '');
+                setDiv.appendChild(dummyBall);
+            }
 
-            // Render Bonus Balls if applicable
+            const mainNumbers = generateUniqueNumbers(currentConfig.mainCount, 1, currentConfig.mainRange);
             let bonusNumbers = [];
             if (currentConfig.bonusCount > 0) {
                 const exclude = currentConfig.separateBonusPool ? [] : mainNumbers;
                 bonusNumbers = generateUniqueNumbers(currentConfig.bonusCount, 1, currentConfig.bonusRange, exclude);
-                
-                bonusNumbers.forEach((num, index) => {
+            }
+
+            // Real numbers reveal after 800ms animation
+            setTimeout(() => {
+                setDiv.innerHTML = '';
+                mainNumbers.forEach((num, index) => {
                     setTimeout(() => {
                         const ball = document.createElement('lotto-ball');
                         ball.setAttribute('number', num);
-                        ball.setAttribute('type', 'bonus');
-                        ball.setAttribute('label', currentConfig.bonusLabel || 'Bonus');
-                        ball.style.setProperty('--ball-color', '#ef4444');
+                        ball.setAttribute('type', 'main');
+                        ball.style.setProperty('--ball-color', getBallColor(num));
                         setDiv.appendChild(ball);
-                    }, (i * 100) + ((currentConfig.mainCount + index) * 50));
+                    }, index * 50);
                 });
-            }
+
+                if (bonusNumbers.length > 0) {
+                    bonusNumbers.forEach((num, index) => {
+                        setTimeout(() => {
+                            const ball = document.createElement('lotto-ball');
+                            ball.setAttribute('number', num);
+                            ball.setAttribute('type', 'bonus');
+                            ball.setAttribute('label', currentConfig.bonusLabel || 'Bonus');
+                            ball.style.setProperty('--ball-color', '#ef4444');
+                            setDiv.appendChild(ball);
+                        }, (currentConfig.mainCount + index) * 50);
+                    });
+                }
+                
+                if (i === setCount - 1) generateBtn.disabled = false;
+            }, 800 + (i * 100));
 
             // Copy logic
             copyBtn.addEventListener('click', () => {
-                const text = `${currentConfig.lottoName}: ${mainNumbers.join(', ')}${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}`;
+                const text = \`\${currentConfig.lottoName}: \${mainNumbers.join(', ')}\${bonusNumbers.length ? ' + ' + bonusNumbers.join(', ') : ''}\`;
                 navigator.clipboard.writeText(text).then(() => {
                     copyBtn.textContent = currentConfig.texts.copySuccess;
-                    copyBtn.classList.add('copied');
-                    setTimeout(() => {
-                        copyBtn.textContent = currentConfig.texts.copyBtn;
-                        copyBtn.classList.remove('copied');
-                    }, 2000);
+                    setTimeout(() => copyBtn.textContent = currentConfig.texts.copyBtn, 2000);
                 });
+            });
+
+            // Share logic (Web Share API or fallback)
+            shareBtn.addEventListener('click', () => {
+                const text = \`My Lucky \${currentConfig.lottoName} Numbers: \${mainNumbers.join(', ')}\`;
+                const url = window.location.href;
+                if (navigator.share) {
+                    navigator.share({ title: 'LottoPro', text: text, url: url });
+                } else {
+                    const twitterUrl = \`https://twitter.com/intent/tweet?text=\${encodeURIComponent(text + ' ' + url)}\`;
+                    window.open(twitterUrl, '_blank');
+                }
             });
         }
     });
@@ -418,12 +486,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getBallColor(number) {
-        if (number <= 10) return '#f59e0b'; // Amber
-        if (number <= 20) return '#3b82f6'; // Blue
-        if (number <= 30) return '#ef4444'; // Red
-        if (number <= 40) return '#10b981'; // Green
-        return '#8b5cf6'; // Violet
+        if (number <= 10) return '#f59e0b';
+        if (number <= 20) return '#3b82f6';
+        if (number <= 30) return '#ef4444';
+        if (number <= 40) return '#10b981';
+        return '#8b5cf6';
     }
 
-    updateUI(); // Initial translation
+    updateUI();
 });
