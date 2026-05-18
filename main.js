@@ -39,7 +39,13 @@ const TRANSLATIONS = {
         luckMessages: ["Good Luck!", "Today is your day!", "Believe in your luck!", "Fortune favors the bold!", "Your lucky numbers are here!"],
         metaTitle: 'LottoPro - Global Lottery Number Generator & Results',
         metaDesc: 'Free cryptographically secure lottery number generator for Powerball, Mega Millions, EuroMillions, UK Lotto, Korea 6/45, and Japan Loto 7.',
-        // Quick card button
+        // Quick card titles and descriptions
+        qj_pb_title: '🇺🇸 Powerball', qj_pb_desc: 'Pick 5 + Powerball',
+        qj_mm_title: '🇺🇸 Mega Millions', qj_mm_desc: 'Pick 5 + Mega Ball',
+        qj_eu_title: '🇪🇺 EuroMillions', qj_eu_desc: 'Pick 5 + 2 Lucky Stars',
+        qj_kr_title: '🇰🇷 Korea 6/45', qj_kr_desc: 'Pick 6 numbers',
+        qj_uk_title: '🇬🇧 UK Lotto', qj_uk_desc: 'Pick 6 numbers',
+        qj_jp_title: '🇯🇵 Japan Loto 7', qj_jp_desc: 'Pick 7 numbers',
         quickCardBtn: 'Go to Generator',
         // How It Works steps
         step1Title: 'Select Your Lottery',
@@ -120,7 +126,13 @@ const TRANSLATIONS = {
         luckMessages: ["행운을 빕니다!", "오늘이 바로 그날!", "당신의 행운을 믿으세요!", "행운은 용감한 자의 것!", "당신의 행운 번호가 여기 있습니다!"],
         metaTitle: '로또 번호 생성기 - LottoPro 글로벌 복권 번호 추첨',
         metaDesc: '한국 로또 6/45, 미국 파워볼, 유로밀리언즈 등 전 세계 6개 복권 번호를 무료로 생성하세요. 보안 난수 알고리즘 사용.',
-        // Quick card button
+        // Quick card titles and descriptions
+        qj_pb_title: '🇺🇸 파워볼', qj_pb_desc: '5개 + 파워볼 선택',
+        qj_mm_title: '🇺🇸 메가밀리언스', qj_mm_desc: '5개 + 메가볼 선택',
+        qj_eu_title: '🇪🇺 유로밀리언즈', qj_eu_desc: '5개 + 럭키스타 2개',
+        qj_kr_title: '🇰🇷 로또 6/45', qj_kr_desc: '6개 번호 선택',
+        qj_uk_title: '🇬🇧 UK 로또', qj_uk_desc: '6개 번호 선택',
+        qj_jp_title: '🇯🇵 일본 로토7', qj_jp_desc: '7개 번호 선택',
         quickCardBtn: '번호 생성하기',
         // How It Works steps
         step1Title: '복권 선택',
@@ -201,7 +213,13 @@ const TRANSLATIONS = {
         luckMessages: ["幸運を祈ります！", "今日がその日！", "あなたの運を信じて！", "幸運は勇者のもの！", "ラッキーナンバーはこちら！"],
         metaTitle: 'ロト番号生成器 - LottoPro グローバル宝くじ',
         metaDesc: 'ロト7、パワーボール、ユーロミリオンズなど世界6大宝くじの番号を無料生成。暗号学的乱数を使用した安全なサービス。',
-        // Quick card button
+        // Quick card titles and descriptions
+        qj_pb_title: '🇺🇸 パワーボール', qj_pb_desc: '5個＋パワーボール選択',
+        qj_mm_title: '🇺🇸 メガミリオンズ', qj_mm_desc: '5個＋メガボール選択',
+        qj_eu_title: '🇪🇺 ユーロミリオンズ', qj_eu_desc: '5個＋ラッキースター2個',
+        qj_kr_title: '🇰🇷 韓国ロト6/45', qj_kr_desc: '6個の番号を選択',
+        qj_uk_title: '🇬🇧 UKロト', qj_uk_desc: '6個の番号を選択',
+        qj_jp_title: '🇯🇵 ロト7', qj_jp_desc: '7個の番号を選択',
         quickCardBtn: '生成器へ',
         // How It Works steps
         step1Title: '宝くじを選ぶ',
