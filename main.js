@@ -454,8 +454,7 @@ function analyzeNumbers(numbers, cfg) {
     return { odd, even: numbers.length - odd, sum, avg, consecGroups, low, mid, high, sumPct };
 }
 
-function renderNumberAnalysis(mainNumbers, cfg, lang) {
-    const container = document.getElementById('number-analysis');
+function renderNumberAnalysis(mainNumbers, cfg, lang, container) {
     if (!container) return;
     const t = TRANSLATIONS[lang];
     const a = analyzeNumbers(mainNumbers, cfg);
@@ -493,7 +492,6 @@ function renderNumberAnalysis(mainNumbers, cfg, lang) {
                 </div>
             </div>
         </div>`;
-    container.style.display = 'block';
 }
 
 // ─── Generate Ticket SVG ──────────────────────────────────────────────────────
@@ -821,7 +819,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const luckMsg = document.getElementById('luck-message');
 
         numbersContainer.innerHTML = '';
-        document.getElementById('number-analysis').style.display = 'none';
         generateBtn.disabled = true;
         luckMsg.textContent = t.luckMessages[Math.floor(Math.random() * t.luckMessages.length)];
 
@@ -841,10 +838,14 @@ document.addEventListener('DOMContentLoaded', () => {
             shareBtn.className = 'action-btn';
             shareBtn.textContent = t.shareBtn;
 
+            const analysisDiv = document.createElement('div');
+            analysisDiv.className = 'set-analysis';
+
             actionsDiv.appendChild(copyBtn);
             actionsDiv.appendChild(shareBtn);
             setWrapper.appendChild(setDiv);
             setWrapper.appendChild(actionsDiv);
+            setWrapper.appendChild(analysisDiv);
             numbersContainer.appendChild(setWrapper);
 
             for (let k = 0; k < currentConfig.mainCount + currentConfig.bonusCount; k++) {
@@ -880,11 +881,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         setDiv.appendChild(ball);
                     }, (currentConfig.mainCount + idx) * 50);
                 });
+                renderNumberAnalysis(mainNumbers, currentConfig, currentLang, analysisDiv);
                 if (i === setCount - 1) {
                     generateBtn.disabled = false;
                     const localName = currentConfig.lottoNames[currentLang] || currentConfig.lottoName;
                     addToHistory(localName, mainNumbers, bonusNumbers);
-                    renderNumberAnalysis(mainNumbers, currentConfig, currentLang);
                 }
             }, 800);
 
