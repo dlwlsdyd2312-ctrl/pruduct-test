@@ -171,17 +171,43 @@ body {
 .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
 .quick-card {
     background: var(--container-bg);
-    padding: 1.5rem;
+    padding: 0;
     border-radius: 1.2rem;
     box-shadow: 0 10px 20px var(--shadow-color);
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
     border: 1px solid var(--toggle-bg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .quick-card:hover { transform: translateY(-5px); border-color: var(--primary-color); box-shadow: 0 15px 30px var(--shadow-color); }
+.ticket-visual {
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    line-height: 0;
+    flex-shrink: 0;
+}
+.quick-card-body {
+    padding: 0.75rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.quick-card-body h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+.quick-card-body p {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.8rem;
+    color: var(--text-muted, #64748b);
+}
 .quick-btn {
-    margin-top: 1rem;
+    margin-top: auto;
     padding: 0.6rem 1.2rem;
     background: var(--primary-color);
     color: white;

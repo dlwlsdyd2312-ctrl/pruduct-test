@@ -284,7 +284,8 @@ const LOTTO_CONFIGS = {
             tax: { en: '20–33% withholding on prizes over ₩200,000', ko: '20만원 초과 시 20~33% 원천징수', ja: '20万ウォン超：20〜33%源泉徴収' },
             where: { en: 'Lottery retailers (복권방) across South Korea + official app', ko: '전국 복권방 및 공식 앱', ja: '韓国全土の복권방（宝くじ販売店）' },
             claim: { en: '1 year from draw date', ko: '추첨일로부터 1년', ja: '抽選日から1年' }
-        }
+        },
+        brand: { bg: '#003478', header: '#c60c30', mainBall: 'white', mainBallColors: ['#fbbf24','#60a5fa','#f87171','#9ca3af','#34d399','#fbbf24'], bonusBall: null }
     },
     us_pb: {
         lottoName: 'Powerball',
@@ -305,7 +306,8 @@ const LOTTO_CONFIGS = {
             tax: { en: 'Federal 37% + state taxes. Lump sum or annuity.', ko: '연방세 37% + 주세. 일시불 또는 연금 선택.', ja: '連邦税37%+州税。一括またはアニュイティ選択。' },
             where: { en: '45 US states, DC, Puerto Rico, US Virgin Islands', ko: '미국 45개 주, DC, 푸에르토리코', ja: '米国45州、DC、プエルトリコ' },
             claim: { en: '90 days to 1 year (varies by state)', ko: '90일 ~ 1년 (구매 주 따라 다름)', ja: '90日〜1年（州により異なる）' }
-        }
+        },
+        brand: { bg: '#002868', header: '#bf0a30', mainBall: 'white', mainBallColors: null, bonusBall: '#bf0a30' }
     },
     uk: {
         lottoName: 'UK Lotto',
@@ -326,7 +328,8 @@ const LOTTO_CONFIGS = {
             tax: { en: 'All prizes completely tax-free in the UK', ko: '영국 내 모든 당첨금 비과세', ja: '英国内の賞金は完全非課税' },
             where: { en: 'UK retailers nationwide + national-lottery.co.uk (18+)', ko: '영국 전국 복권 판매점 및 공식 웹사이트 (18세 이상)', ja: '英国全土の販売店・公式サイト（18歳以上）' },
             claim: { en: '180 days from draw date', ko: '추첨일로부터 180일', ja: '抽選日から180日' }
-        }
+        },
+        brand: { bg: '#660000', header: '#cc0000', mainBall: 'white', mainBallColors: null, bonusBall: null }
     },
     jp_l7: {
         lottoName: 'Loto 7',
@@ -347,7 +350,8 @@ const LOTTO_CONFIGS = {
             tax: { en: 'Tax-free in Japan regardless of amount', ko: '일본 내 당첨금 전액 비과세', ja: '日本では金額に関わらず非課税' },
             where: { en: 'Mizuho Bank counters + convenience stores (7-Eleven, Lawson, FamilyMart)', ko: '미즈호은행 창구 및 편의점 (세븐일레븐, 로손, 패밀리마트)', ja: 'みずほ銀行窓口・コンビニ（7-Eleven・ローソン・ファミマ）' },
             claim: { en: '1 year from draw date', ko: '추첨일로부터 1년', ja: '抽選日から1年' }
-        }
+        },
+        brand: { bg: '#1a1a2e', header: '#bc002d', mainBall: 'white', mainBallColors: ['#fbbf24','#60a5fa','#f87171','#c084fc','#34d399','#fb923c','#e879f9'], bonusBall: null }
     },
     us_mm: {
         lottoName: 'Mega Millions',
@@ -368,7 +372,8 @@ const LOTTO_CONFIGS = {
             tax: { en: 'Federal 37% + state taxes. Lump sum or annuity.', ko: '연방세 37% + 주세. 일시불 또는 연금 선택.', ja: '連邦税37%+州税。一括またはアニュイティ選択。' },
             where: { en: '45 US states, DC, US Virgin Islands', ko: '미국 45개 주, DC', ja: '米国45州、DC' },
             claim: { en: '60 days to 1 year (varies by state)', ko: '60일 ~ 1년 (구매 주 따라 다름)', ja: '60日〜1年（州により異なる）' }
-        }
+        },
+        brand: { bg: '#1a2a5e', header: '#003087', mainBall: 'white', mainBallColors: null, bonusBall: '#d4af37' }
     },
     eu_em: {
         lottoName: 'EuroMillions',
@@ -389,7 +394,8 @@ const LOTTO_CONFIGS = {
             tax: { en: 'Tax-free in most participating countries', ko: '대부분 참여국에서 비과세', ja: 'ほとんどの参加国で非課税' },
             where: { en: '9 countries: UK, Ireland, France, Spain, Portugal, Austria, Belgium, Luxembourg, Switzerland', ko: '9개국: 영국, 아일랜드, 프랑스, 스페인, 포르투갈, 오스트리아, 벨기에, 룩셈부르크, 스위스', ja: '9カ国：英国・アイルランド・フランス・スペイン・ポルトガル・オーストリア・ベルギー・ルクセンブルク・スイス' },
             claim: { en: '180 days (varies by country)', ko: '180일 (국가별 상이)', ja: '180日（国により異なる）' }
-        }
+        },
+        brand: { bg: '#003399', header: '#002080', mainBall: 'white', mainBallColors: null, bonusBall: '#FFD700' }
     }
 };
 
@@ -397,6 +403,124 @@ const LOTTO_CONFIGS = {
 function resolveDetail(val, lang) {
     if (typeof val === 'string') return val;
     return val[lang] || val['en'] || '';
+}
+
+// ─── Generate Ticket SVG ──────────────────────────────────────────────────────
+function generateTicketSVG(key, lang) {
+    const cfg = LOTTO_CONFIGS[key];
+    const br = cfg.brand;
+    const name = cfg.lottoNames[lang] || cfg.lottoName;
+    const W = 280, H = 140, hdrH = 38, ftrH = 24;
+    const ballAreaH = H - hdrH - ftrH;
+    const ballCY = hdrH + ballAreaH / 2;
+    const hasSep = cfg.bonusCount > 0 && cfg.separateBonusPool;
+    const mainR = cfg.mainCount >= 7 ? 12 : 14;
+    const bonusR = 14;
+
+    // Calculate bonus area width
+    const bonusAreaW = hasSep ? (cfg.bonusCount * (bonusR * 2 + 6) + 14) : 0;
+    // Available width for main balls (8px left pad + mainAreaW + bonusAreaW + 8px right pad = W)
+    const mainAreaW = W - bonusAreaW - 16;
+
+    // X centers for main balls
+    const mainGap = cfg.mainCount > 1 ? (mainAreaW - cfg.mainCount * mainR * 2) / (cfg.mainCount - 1) : 0;
+    const mainStartX = 8 + mainR;
+    const mainCXs = Array.from({length: cfg.mainCount}, (_, i) => mainStartX + i * (mainR * 2 + mainGap));
+
+    // X centers for bonus balls
+    const bonusCXs = [];
+    if (hasSep) {
+        const bonusGap = cfg.bonusCount > 1 ? (bonusAreaW - 14 - cfg.bonusCount * bonusR * 2) / (cfg.bonusCount - 1) : 0;
+        const bonusStartX = mainAreaW + 8 + mainR + bonusR;
+        for (let i = 0; i < cfg.bonusCount; i++) {
+            bonusCXs.push(bonusStartX + i * (bonusR * 2 + bonusGap));
+        }
+    }
+
+    // Helper: generate a single ball SVG
+    function ball(cx, cy, r, fill, isBonus) {
+        const shine = `<ellipse cx="${(cx - r * 0.3).toFixed(1)}" cy="${(cy - r * 0.32).toFixed(1)}" rx="${(r * 0.28).toFixed(1)}" ry="${(r * 0.2).toFixed(1)}" fill="rgba(255,255,255,0.65)"/>`;
+        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${fill}" stroke="rgba(0,0,0,0.12)" stroke-width="0.5"/>${shine}`;
+    }
+
+    // Main balls SVG
+    const mainBallsSVG = mainCXs.map((cx, i) => {
+        const fill = br.mainBallColors ? br.mainBallColors[i % br.mainBallColors.length] : (br.mainBall || 'white');
+        return ball(cx, ballCY, mainR, fill, false);
+    }).join('');
+
+    // Separator line (for Powerball/MM/EM)
+    const sepSVG = hasSep ? `<line x1="${(mainAreaW + 10).toFixed(1)}" y1="${(ballCY - mainR - 8).toFixed(1)}" x2="${(mainAreaW + 10).toFixed(1)}" y2="${(ballCY + mainR + 8).toFixed(1)}" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="3,2"/>` : '';
+
+    // Bonus balls SVG
+    const bonusBallsSVG = bonusCXs.map((cx, i) => {
+        if (cfg.bonusLabel === 'Star') {
+            return `<text x="${cx.toFixed(1)}" y="${(ballCY + 7).toFixed(1)}" text-anchor="middle" font-size="${(bonusR * 1.6).toFixed(0)}" fill="${br.bonusBall}">★</text>`;
+        }
+        return ball(cx, ballCY, bonusR, br.bonusBall || '#ff4444', true);
+    }).join('');
+
+    // Footer format text
+    let footerTxt = hasSep
+        ? `Pick ${cfg.mainCount} (1-${cfg.mainRange}) + ${cfg.bonusLabel} (1-${cfg.bonusRange})`
+        : `Pick ${cfg.mainCount} numbers from 1 to ${cfg.mainRange}`;
+
+    const defId = key.replace(/_/g, '-');
+
+    return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:10px 10px 0 0">
+<defs>
+  <linearGradient id="tbg-${defId}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="${br.bg}"/>
+    <stop offset="100%" stop-color="${br.bg}dd"/>
+  </linearGradient>
+</defs>
+<rect x="0" y="0" width="${W}" height="${H}" fill="url(#tbg-${defId})"/>
+<rect x="0" y="0" width="${W}" height="${hdrH}" fill="${br.header}"/>
+<rect x="0" y="${hdrH - 6}" width="${W}" height="6" fill="${br.header}"/>
+<rect x="0" y="0" width="${W}" height="${hdrH + 6}" fill="rgba(255,255,255,0.05)"/>
+<text x="12" y="${(hdrH * 0.73).toFixed(0)}" font-size="15">${cfg.flag}</text>
+<text x="${(W / 2).toFixed(0)}" y="${(hdrH * 0.73).toFixed(0)}" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="13" fill="white" letter-spacing="1.2">${name.toUpperCase()}</text>
+<circle cx="${W - 20}" cy="${(hdrH / 2).toFixed(0)}" r="3" fill="rgba(255,255,255,0.35)"/>
+<circle cx="${W - 13}" cy="${(hdrH / 2).toFixed(0)}" r="3" fill="rgba(255,255,255,0.35)"/>
+<line x1="8" y1="${H - ftrH}" x2="${W - 8}" y2="${H - ftrH}" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="4,3"/>
+${mainBallsSVG}
+${sepSVG}
+${bonusBallsSVG}
+<text x="${(W / 2).toFixed(0)}" y="${H - 8}" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.55)">${footerTxt}</text>
+<g opacity="0.18" fill="white" transform="translate(${W - 40},${H - ftrH + 4})">
+  <rect x="0" y="0" width="2" height="${ftrH - 8}"/>
+  <rect x="3" y="0" width="1" height="${ftrH - 8}"/>
+  <rect x="5" y="0" width="3" height="${ftrH - 8}"/>
+  <rect x="9" y="0" width="1" height="${ftrH - 8}"/>
+  <rect x="11" y="0" width="2" height="${ftrH - 8}"/>
+  <rect x="14" y="0" width="1" height="${ftrH - 8}"/>
+  <rect x="17" y="0" width="3" height="${ftrH - 8}"/>
+  <rect x="21" y="0" width="1" height="${ftrH - 8}"/>
+  <rect x="23" y="0" width="2" height="${ftrH - 8}"/>
+  <rect x="26" y="0" width="1" height="${ftrH - 8}"/>
+</g>
+<text x="10" y="${H - 8}" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,0.18)">LPR-${key.toUpperCase()}-2026</text>
+</svg>`;
+}
+
+// ─── Render Quick Cards ────────────────────────────────────────────────────────
+function renderQuickCards(lang) {
+    const t = TRANSLATIONS[lang];
+    const container = document.getElementById('quick-grid-container');
+    if (!container) return;
+    const order = ['us_pb', 'us_mm', 'eu_em', 'kr', 'uk', 'jp_l7'];
+    const titles = { us_pb: t.qj_pb_title, us_mm: t.qj_mm_title, eu_em: t.qj_eu_title, kr: t.qj_kr_title, uk: t.qj_uk_title, jp_l7: t.qj_jp_title };
+    const descs  = { us_pb: t.qj_pb_desc,  us_mm: t.qj_mm_desc,  eu_em: t.qj_eu_desc,  kr: t.qj_kr_desc,  uk: t.qj_uk_desc,  jp_l7: t.qj_jp_desc  };
+    container.innerHTML = order.map(key => `
+        <div class="quick-card" onclick="document.getElementById('country-select').value='${key}'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
+            <div class="ticket-visual">${generateTicketSVG(key, lang)}</div>
+            <div class="quick-card-body">
+                <h4>${titles[key] || ''}</h4>
+                <p>${descs[key] || ''}</p>
+                <button class="quick-btn">${t.quickCardBtn || 'Go to Generator'}</button>
+            </div>
+        </div>
+    `).join('');
 }
 
 // ─── Render Lottery Details cards ─────────────────────────────────────────────
@@ -589,6 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Render dynamic sections
+        renderQuickCards(currentLang);
         renderLotteryDetails(currentLang);
         renderResponsibleGaming(currentLang);
 
