@@ -469,6 +469,7 @@ body {
 
 /* ── Number Analysis ─────────────────────────────────────────────────────── */
 #number-analysis { margin-top: 1.5rem; }
+.set-analysis { margin-top: 1rem; }
 .analysis-card {
     background: var(--container-bg);
     border: 1px solid var(--toggle-bg);
