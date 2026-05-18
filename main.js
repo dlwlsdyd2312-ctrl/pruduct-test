@@ -2,7 +2,7 @@ const LOTTO_CONFIGS = {
     kr: {
         name: 'South Korea', lang: 'ko', lottoName: '로또 6/45',
         mainCount: 6, mainRange: 45, bonusCount: 1, bonusRange: 45,
-        separateBonusPool: false,
+        bonusLabel: '보너스', separateBonusPool: false,
         resultsUrl: 'https://www.dhlottery.co.kr/common.do?method=main',
         stats: '자주 나오는 번호: 1, 18, 27, 34, 43, 45',
         hotNumbers: [1, 18, 27, 34, 43, 45],
@@ -110,7 +110,7 @@ const LOTTO_CONFIGS = {
     jp_l7: {
         name: 'Japan', lang: 'ja', lottoName: 'ロト7 (Loto 7)',
         mainCount: 7, mainRange: 37, bonusCount: 2, bonusRange: 37,
-        separateBonusPool: false,
+        bonusLabel: 'ボーナス', separateBonusPool: false,
         resultsUrl: 'https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/loto7/index.html',
         stats: '出現頻度の高い数字: 13, 15, 21, 26, 30, 32, 34',
         hotNumbers: [13, 15, 21, 26, 30, 32, 34],
@@ -141,6 +141,42 @@ const LOTTO_CONFIGS = {
             historyTitle: '最近の番号', clearHistory: '履歴を削除',
             disclaimer: '<strong>免責事項:</strong> この生成器は娯楽用であり、当選を保証するものではありません。',
             adPlaceholder: '広告エリア'
+        }
+    },
+    us_mm: {
+        name: 'USA (Mega Millions)', lang: 'en', lottoName: 'Mega Millions',
+        mainCount: 5, mainRange: 70, bonusCount: 1, bonusRange: 25,
+        bonusLabel: 'MB', separateBonusPool: true,
+        resultsUrl: 'https://www.megamillions.com/winning-numbers',
+        stats: 'Most frequent numbers: 14, 17, 31, 46, 64',
+        hotNumbers: [14, 17, 31, 46, 64, 10],
+        coldNumbers: [3, 20, 29, 41, 55, 68],
+        meta: {
+            title: 'Mega Millions Generator - Lucky Numbers & Official Results',
+            description: 'Generate Mega Millions lucky numbers for free. Statistical insights, official results links, and cryptographically secure random picks.'
+        },
+        texts: {
+            tabHome: '🏠 Home', tabGen: '🎰 Generator', tabGuide: '📖 Guide', tabContact: '📧 Contact',
+            heroTitle: 'Mega Millions Lucky Pick',
+            heroSub: 'Your free, secure generator for Mega Millions number combinations.',
+            tickerJackpot: '💰 Current Mega Millions Jackpot:', tickerWinner: '🔥 Recent Winner:',
+            quickJumpTitle: 'Quick Jump - Popular Lotteries',
+            genTitle: 'Generate Mega Millions Numbers',
+            genBtn: 'Generate Numbers',
+            setCountLabel: 'Sets:',
+            labelExclude: 'Exclude Numbers:', labelInclude: 'Include Numbers:',
+            statsTitle: 'Live Statistics', checkResults: 'Check Official Results',
+            guideHeader: 'Global Lottery Guide', thLotto: 'Lottery', thFormat: 'Format', thOdds: 'Jackpot Odds',
+            tipHeader: '💡 Mega Millions Tip', tipDesc: 'Mega Millions tickets must be purchased in the US. Winners have 180 days (or up to 1 year in some states) to claim prizes.',
+            contactHeader: 'Get in Touch', contactSub: 'Have a suggestion or found a bug? We\'d love to hear from you!',
+            labelName: 'Name', labelEmail: 'Email', labelMsg: 'Message', btnSubmit: 'Send Message',
+            faqHeader: 'Frequently Asked Questions',
+            faqQ1: 'Is it truly random?', faqA1: 'Yes, we use the Web Crypto API for cryptographically secure random numbers.',
+            faqQ2: 'Is this service free?', faqA2: 'Yes, LottoPro is 100% free for everyone.',
+            copyBtn: 'Copy Set', copySuccess: 'Copied!', shareBtn: 'Share',
+            historyTitle: 'Recent Numbers', clearHistory: 'Clear History',
+            disclaimer: '<strong>Disclaimer:</strong> This generator is for entertainment only. We do not guarantee any winnings.',
+            adPlaceholder: 'Advertisement'
         }
     },
     eu_em: {

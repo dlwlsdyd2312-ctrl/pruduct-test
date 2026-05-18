@@ -151,7 +151,7 @@ body {
 }
 
 .quick-jump { margin-top: 3rem; }
-.quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+.quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
 .quick-card {
     background: var(--container-bg);
     padding: 1.5rem;
@@ -379,6 +379,7 @@ body {
     .hero h1 { font-size: 1.8rem; }
     .main-tabs { overflow-x: auto; padding: 0.3rem; }
     .main-tab-btn { font-size: 0.85rem; padding: 0.6rem 0.4rem; min-width: 80px; }
-    .quick-grid, .advanced-options, .form-grid, .faq-grid-premium, .steps-grid, .why-grid { grid-template-columns: 1fr; }
+    .quick-grid, .advanced-options, .form-grid, .faq-grid-premium, .steps-grid, .why-grid { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
     .container, .contact-card { padding: 1.5rem 1rem; }
 }
