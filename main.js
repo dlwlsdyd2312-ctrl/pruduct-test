@@ -699,6 +699,20 @@ class LottoBall extends HTMLElement {
 }
 customElements.define('lotto-ball', LottoBall);
 
+// ─── Bookmark / Install ───────────────────────────────────────────────────────
+let pwaInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    pwaInstallPrompt = e;
+    const btn = document.getElementById('bookmark-btn');
+    if (btn) btn.style.display = 'flex';
+});
+window.addEventListener('appinstalled', () => {
+    pwaInstallPrompt = null;
+    const btn = document.getElementById('bookmark-btn');
+    if (btn) btn.style.display = 'none';
+});
+
 // ─── App ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle    = document.getElementById('theme-toggle');
@@ -722,6 +736,81 @@ document.addEventListener('DOMContentLoaded', () => {
         if (icon) icon.textContent = t === 'light' ? '🌙' : '☀️';
     }
     updateThemeIcon(savedTheme);
+
+    // ── Bookmark Button ───────────────────────────────────────────────────────
+    const bookmarkBtn = document.getElementById('bookmark-btn');
+    const bookmarkTooltip = document.getElementById('bookmark-tooltip');
+
+    const BOOKMARK_TEXT = {
+        en: {
+            title: '⭐ Add to Favorites',
+            desktop: 'Press <kbd>Ctrl+D</kbd> (Windows) or <kbd>⌘D</kbd> (Mac) to bookmark LottoPro.',
+            mobile: 'Tap <kbd>Share</kbd> → <kbd>Add to Home Screen</kbd> to install LottoPro.',
+            installBtn: '📲 Install App',
+        },
+        ko: {
+            title: '⭐ 즐겨찾기 추가',
+            desktop: '<kbd>Ctrl+D</kbd> (Windows) 또는 <kbd>⌘D</kbd> (Mac)을 눌러 즐겨찾기에 추가하세요.',
+            mobile: '<kbd>공유</kbd> → <kbd>홈 화면에 추가</kbd>를 눌러 앱으로 설치하세요.',
+            installBtn: '📲 앱 설치하기',
+        },
+        ja: {
+            title: '⭐ お気に入りに追加',
+            desktop: '<kbd>Ctrl+D</kbd>（Windows）または<kbd>⌘D</kbd>（Mac）でブックマークに追加。',
+            mobile: '<kbd>共有</kbd>→<kbd>ホーム画面に追加</kbd>でアプリとしてインストール。',
+            installBtn: '📲 アプリをインストール',
+        },
+    };
+
+    function isMobile() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    if (bookmarkBtn) {
+        // Always show the button (desktop shortcut hint is always useful)
+        bookmarkBtn.style.display = 'flex';
+
+        bookmarkBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bookmarkTooltip.style.display === 'block') {
+                bookmarkTooltip.style.display = 'none';
+                return;
+            }
+            const t = BOOKMARK_TEXT[currentLang] || BOOKMARK_TEXT.en;
+            const mobile = isMobile();
+            const hint = mobile ? t.mobile : t.desktop;
+            const installHtml = pwaInstallPrompt
+                ? `<button class="bm-install-btn" id="pwa-install-btn">${t.installBtn}</button>`
+                : '';
+            bookmarkTooltip.innerHTML = `
+                <button class="bookmark-tooltip-close" id="bm-close">✕</button>
+                <p><strong>${t.title}</strong></p>
+                <p>${hint}</p>
+                ${installHtml}
+            `;
+            bookmarkTooltip.style.display = 'block';
+
+            document.getElementById('bm-close')?.addEventListener('click', () => {
+                bookmarkTooltip.style.display = 'none';
+            });
+            document.getElementById('pwa-install-btn')?.addEventListener('click', async () => {
+                if (!pwaInstallPrompt) return;
+                pwaInstallPrompt.prompt();
+                const { outcome } = await pwaInstallPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    pwaInstallPrompt = null;
+                    bookmarkBtn.style.display = 'none';
+                }
+                bookmarkTooltip.style.display = 'none';
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!bookmarkTooltip.contains(e.target) && e.target !== bookmarkBtn) {
+                bookmarkTooltip.style.display = 'none';
+            }
+        });
+    }
 
     // ── Tabs ──────────────────────────────────────────────────────────────────
     mainTabBtns.forEach(btn => {

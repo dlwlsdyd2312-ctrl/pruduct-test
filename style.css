@@ -97,7 +97,7 @@ body {
     font-weight: 600;
 }
 
-#theme-toggle {
+#theme-toggle, #bookmark-btn {
     background: var(--toggle-bg);
     border: none;
     padding: 0.5rem;
@@ -108,6 +108,55 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.15s;
+}
+#bookmark-btn:hover { transform: scale(1.15); }
+
+.bookmark-tooltip {
+    position: fixed;
+    top: 70px;
+    right: 1rem;
+    z-index: 9999;
+    background: var(--container-bg);
+    border: 1px solid var(--toggle-bg);
+    border-radius: 0.9rem;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    max-width: 280px;
+    animation: fadeIn 0.2s ease;
+}
+.bookmark-tooltip p { margin: 0 0 0.5rem; font-size: 0.9rem; line-height: 1.5; color: var(--text-color); }
+.bookmark-tooltip p:last-child { margin: 0; }
+.bookmark-tooltip kbd {
+    display: inline-block;
+    background: var(--toggle-bg);
+    border: 1px solid var(--text-muted, #64748b);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.82rem;
+    font-family: monospace;
+    color: var(--text-color);
+}
+.bookmark-tooltip .bm-install-btn {
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.bookmark-tooltip .bm-install-btn:hover { background: #1d4ed8; }
+.bookmark-tooltip-close {
+    position: absolute;
+    top: 0.5rem; right: 0.6rem;
+    background: none; border: none;
+    font-size: 1rem; cursor: pointer;
+    color: var(--text-muted, #64748b);
+    line-height: 1;
 }
 
 /* Main Content Wrapper */
