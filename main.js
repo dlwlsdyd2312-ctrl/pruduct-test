@@ -28,6 +28,7 @@ const LOTTO_CONFIGS = {
             faqQ1: '정말 무작위인가요?', faqA1: '네, 브라우저의 보안 난수 생성기를 사용합니다.',
             faqQ2: '무료인가요?', faqA2: '네, LottoPro는 누구나 100% 무료로 이용 가능합니다.',
             copyBtn: '번호 복사', copySuccess: '복사 완료!', shareBtn: '공유하기',
+            historyTitle: '최근 생성 번호', clearHistory: '기록 삭제',
             disclaimer: '<strong>면책 조항:</strong> 이 로또 번호 생성기는 오직 재미를 위한 것이며, 실제 당첨을 보장하지 않습니다. 책임감 있게 게임을 즐겨주세요.',
             adPlaceholder: '광고 영역'
         }
@@ -61,6 +62,7 @@ const LOTTO_CONFIGS = {
             faqQ1: 'Is it truly random?', faqA1: 'Yes, we use the Web Crypto API for secure random numbers.',
             faqQ2: 'Is this service free?', faqA2: 'Yes, LottoPro is 100% free for everyone.',
             copyBtn: 'Copy Set', copySuccess: 'Copied!', shareBtn: 'Share',
+            historyTitle: 'Recent Numbers', clearHistory: 'Clear History',
             disclaimer: '<strong>Disclaimer:</strong> This Lotto Number Generator is provided for entertainment purposes only. We do not guarantee any winnings.',
             adPlaceholder: 'Advertisement'
         }
@@ -94,6 +96,7 @@ const LOTTO_CONFIGS = {
             faqQ1: 'Is it random?', faqA1: 'Yes, high-entropy PRNG is used.',
             faqQ2: 'Cost?', faqA2: 'Completely free.',
             copyBtn: 'Copy', copySuccess: 'Saved!', shareBtn: 'Share',
+            historyTitle: 'Recent Numbers', clearHistory: 'Clear History',
             disclaimer: '<strong>Disclaimer:</strong> This tool is for entertainment and organization only.',
             adPlaceholder: 'Ad'
         }
@@ -127,6 +130,7 @@ const LOTTO_CONFIGS = {
             faqQ1: '本当にランダムですか？', faqA1: 'はい、安全な疑似乱数生成器を使用しています。',
             faqQ2: '無料ですか？', faqA2: 'はい、LottoProは完全に無料で利用できます。',
             copyBtn: 'コピー', copySuccess: '完了！', shareBtn: '共有',
+            historyTitle: '最近の番号', clearHistory: '履歴を削除',
             disclaimer: '<strong>免責事項:</strong> この生成器は娯楽用であり、当選を保証するものではありません。',
             adPlaceholder: '広告エリア'
         }
@@ -160,6 +164,7 @@ const LOTTO_CONFIGS = {
             faqQ1: 'Is it random?', faqA1: 'Yes, secure algorithms are used.',
             faqQ2: 'Free?', faqA2: 'Yes, 100% free.',
             copyBtn: 'Copy', copySuccess: 'Done!', shareBtn: 'Share',
+            historyTitle: 'Recent Numbers', clearHistory: 'Clear History',
             disclaimer: '<strong>Disclaimer:</strong> Provided for entertainment purposes only.',
             adPlaceholder: 'Ads'
         }
@@ -228,7 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let currentConfig = LOTTO_CONFIGS.us_pb;
-    countrySelect.addEventListener('change', (e) => { currentConfig = LOTTO_CONFIGS[e.target.value]; updateUI(); });
+    countrySelect.addEventListener('change', (e) => {
+        currentConfig = LOTTO_CONFIGS[e.target.value];
+        document.documentElement.setAttribute('lang', currentConfig.lang);
+        updateUI();
+    });
 
     function updateUI() {
         const t = currentConfig.texts;
@@ -256,6 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('stats-data').textContent = currentConfig.stats;
         document.getElementById('results-link').href = currentConfig.resultsUrl;
         document.getElementById('name').placeholder = t.labelName;
+        if (t.historyTitle) { const ht = document.getElementById('history-title'); if (ht) ht.textContent = t.historyTitle; }
+        if (t.clearHistory) { const cb = document.getElementById('clear-history-btn'); if (cb) cb.textContent = t.clearHistory; }
         numbersContainer.innerHTML = '';
     }
 
@@ -325,7 +336,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         setDiv.appendChild(ball);
                     }, (currentConfig.mainCount + idx) * 50);
                 });
-                if (i === setCount - 1) generateBtn.disabled = false;
+                if (i === setCount - 1) {
+                    generateBtn.disabled = false;
+                    addToHistory(currentConfig.lottoName, mainNumbers, bonusNumbers);
+                }
             }, 800);
 
             copyBtn.addEventListener('click', () => {
@@ -347,12 +361,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function cryptoRandom(min, max) {
+        const range = max - min + 1;
+        const bytesNeeded = Math.ceil(Math.log2(range) / 8);
+        const maxValid = Math.floor(256 ** bytesNeeded / range) * range;
+        const buf = new Uint8Array(bytesNeeded);
+        let val;
+        do {
+            crypto.getRandomValues(buf);
+            val = buf.reduce((acc, b) => acc * 256 + b, 0);
+        } while (val >= maxValid);
+        return min + (val % range);
+    }
+
     function generateUniqueNumbers(count, min, max, exclude = [], include = []) {
         const numbers = new Set();
-        include.forEach(n => { if(n >= min && n <= max && numbers.size < count) numbers.add(n); });
-        while (numbers.size < count) {
-            const num = Math.floor(Math.random() * (max - min + 1)) + min;
+        include.forEach(n => { if (n >= min && n <= max && !exclude.includes(n) && numbers.size < count) numbers.add(n); });
+        let attempts = 0;
+        while (numbers.size < count && attempts < 10000) {
+            const num = cryptoRandom(min, max);
             if (!exclude.includes(num)) numbers.add(num);
+            attempts++;
         }
         return Array.from(numbers).sort((a, b) => a - b);
     }
@@ -360,6 +389,38 @@ document.addEventListener('DOMContentLoaded', () => {
     function getBallColor(n) {
         if (n <= 10) return '#f59e0b'; if (n <= 20) return '#3b82f6'; if (n <= 30) return '#ef4444'; if (n <= 40) return '#10b981'; return '#8b5cf6';
     }
+
+    // History
+    const HISTORY_KEY = 'lottopro_history';
+    const historySection = document.getElementById('history-section');
+    const historyList = document.getElementById('history-list');
+    const clearHistoryBtn = document.getElementById('clear-history-btn');
+
+    function loadHistory() { try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch { return []; } }
+    function saveHistory(h) { localStorage.setItem(HISTORY_KEY, JSON.stringify(h.slice(0, 20))); }
+
+    function addToHistory(lottoName, main, bonus) {
+        const h = loadHistory();
+        h.unshift({ lottoName, main, bonus, date: new Date().toLocaleDateString() });
+        saveHistory(h);
+        renderHistory();
+    }
+
+    function renderHistory() {
+        const h = loadHistory();
+        if (h.length === 0) { historySection.style.display = 'none'; return; }
+        historySection.style.display = 'block';
+        historyList.innerHTML = h.map(item => `
+            <div class="history-item">
+                <span class="history-name">${item.lottoName}</span>
+                <span class="history-nums">${item.main.join(' · ')}${item.bonus.length ? ' <span class="history-bonus">+ ' + item.bonus.join(' · ') + '</span>' : ''}</span>
+                <span class="history-date">${item.date}</span>
+            </div>
+        `).join('');
+    }
+
+    clearHistoryBtn.addEventListener('click', () => { localStorage.removeItem(HISTORY_KEY); renderHistory(); });
+    renderHistory();
 
     updateUI();
 });
