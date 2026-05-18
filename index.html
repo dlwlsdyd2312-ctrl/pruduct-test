@@ -138,32 +138,32 @@
                     <div class="quick-card" onclick="document.getElementById('country-select').value='us_pb'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
                         <h4>🇺🇸 Powerball</h4>
                         <p>Pick 5 + Powerball</p>
-                        <button class="quick-btn">Go to Generator</button>
+                        <button class="quick-btn" data-i18n="quickCardBtn">Go to Generator</button>
                     </div>
                     <div class="quick-card" onclick="document.getElementById('country-select').value='us_mm'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
                         <h4>🇺🇸 Mega Millions</h4>
                         <p>Pick 5 + Mega Ball</p>
-                        <button class="quick-btn">Go to Generator</button>
+                        <button class="quick-btn" data-i18n="quickCardBtn">Go to Generator</button>
                     </div>
                     <div class="quick-card" onclick="document.getElementById('country-select').value='eu_em'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
                         <h4>🇪🇺 EuroMillions</h4>
                         <p>Pick 5 + 2 Lucky Stars</p>
-                        <button class="quick-btn">Go to Generator</button>
+                        <button class="quick-btn" data-i18n="quickCardBtn">Go to Generator</button>
                     </div>
                     <div class="quick-card" onclick="document.getElementById('country-select').value='kr'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
                         <h4>🇰🇷 Korea 6/45</h4>
                         <p>Pick 6 numbers</p>
-                        <button class="quick-btn">Go to Generator</button>
+                        <button class="quick-btn" data-i18n="quickCardBtn">Go to Generator</button>
                     </div>
                     <div class="quick-card" onclick="document.getElementById('country-select').value='uk'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
                         <h4>🇬🇧 UK Lotto</h4>
                         <p>Pick 6 numbers</p>
-                        <button class="quick-btn">Go to Generator</button>
+                        <button class="quick-btn" data-i18n="quickCardBtn">Go to Generator</button>
                     </div>
                     <div class="quick-card" onclick="document.getElementById('country-select').value='jp_l7'; document.getElementById('country-select').dispatchEvent(new Event('change')); document.querySelector('[data-main-tab=generator-tab]').click();">
                         <h4>🇯🇵 Japan Loto 7</h4>
                         <p>Pick 7 numbers</p>
-                        <button class="quick-btn">Go to Generator</button>
+                        <button class="quick-btn" data-i18n="quickCardBtn">Go to Generator</button>
                     </div>
                 </div>
             </div>
@@ -174,18 +174,18 @@
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-num">1</div>
-                        <h4>Select Your Lottery</h4>
-                        <p>Choose from 6 major international lotteries using the dropdown in the top navigation bar.</p>
+                        <h4 data-i18n="step1Title">Select Your Lottery</h4>
+                        <p data-i18n="step1Desc">Choose from 6 major international lotteries using the dropdown in the top navigation bar.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-num">2</div>
-                        <h4>Set Your Options</h4>
-                        <p>Pick how many sets to generate (up to 10), and optionally include or exclude specific numbers.</p>
+                        <h4 data-i18n="step2Title">Set Your Options</h4>
+                        <p data-i18n="step2Desc">Pick how many sets to generate (up to 10), and optionally include or exclude specific numbers.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-num">3</div>
-                        <h4>Generate &amp; Play</h4>
-                        <p>Hit Generate and get your cryptographically random lucky numbers instantly. Copy or share them with one click.</p>
+                        <h4 data-i18n="step3Title">Generate &amp; Play</h4>
+                        <p data-i18n="step3Desc">Hit Generate and get your cryptographically random lucky numbers instantly. Copy or share them with one click.</p>
                     </div>
                 </div>
             </div>
@@ -197,29 +197,29 @@
                     <div class="why-item">
                         <span class="why-icon">🔒</span>
                         <div>
-                            <strong>Cryptographically Secure</strong>
-                            <p>Uses the Web Crypto API — the same standard as banking software — not a simple pseudo-random function.</p>
+                            <strong data-i18n="why1Title">Cryptographically Secure</strong>
+                            <p data-i18n="why1Desc">Uses the Web Crypto API — the same standard as banking software — not a simple pseudo-random function.</p>
                         </div>
                     </div>
                     <div class="why-item">
                         <span class="why-icon">🌍</span>
                         <div>
-                            <strong>Truly Global</strong>
-                            <p>Full interface localization for English, Korean, and Japanese. More languages coming soon.</p>
+                            <strong data-i18n="why2Title">Truly Global</strong>
+                            <p data-i18n="why2Desc">Full interface localization for English, Korean, and Japanese. More languages coming soon.</p>
                         </div>
                     </div>
                     <div class="why-item">
                         <span class="why-icon">📱</span>
                         <div>
-                            <strong>Works Everywhere</strong>
-                            <p>Fully responsive design — works perfectly on phones, tablets, and desktops with no installation required.</p>
+                            <strong data-i18n="why3Title">Works Everywhere</strong>
+                            <p data-i18n="why3Desc">Fully responsive design — works perfectly on phones, tablets, and desktops with no installation required.</p>
                         </div>
                     </div>
                     <div class="why-item">
                         <span class="why-icon">🆓</span>
                         <div>
-                            <strong>100% Free, Always</strong>
-                            <p>No sign-up, no subscription, no hidden fees. LottoPro will always be free for everyone.</p>
+                            <strong data-i18n="why4Title">100% Free, Always</strong>
+                            <p data-i18n="why4Desc">No sign-up, no subscription, no hidden fees. LottoPro will always be free for everyone.</p>
                         </div>
                     </div>
                 </div>
@@ -230,7 +230,7 @@
         <section id="generator-tab" class="main-tab-content">
             <div class="container">
                 <h2 id="gen-title-text">Generate Your Lucky Numbers</h2>
-                
+
                 <div class="generator-controls">
                     <div class="set-count-wrapper">
                         <label for="set-count" id="set-count-label">Sets:</label>
@@ -254,7 +254,7 @@
                         <input type="text" id="include-nums" placeholder="e.g. 7, 21">
                     </div>
                 </div>
-                
+
                 <div id="luck-message" class="luck-message"></div>
 
                 <div class="stats-box">
@@ -331,100 +331,10 @@
                     </table>
                 </div>
 
-                <!-- Per-Lottery Detail Cards -->
-                <h3 class="section-subheader">Lottery Details</h3>
+                <!-- Per-Lottery Detail Cards (dynamically rendered) -->
+                <h3 class="section-subheader" data-i18n="lotteryDetailsHeader">Lottery Details</h3>
                 <div class="lottery-details-grid">
-
-                    <details class="lottery-card" open>
-                        <summary><span class="lc-flag">🇺🇸</span><span class="lc-name">USA Powerball</span><span class="lc-tag">Bi-weekly</span></summary>
-                        <div class="lc-body">
-                            <div class="lc-row"><strong>Format</strong><span>Pick 5 numbers from 1–69, then 1 Powerball from 1–26</span></div>
-                            <div class="lc-row"><strong>Draw Days</strong><span>Monday, Wednesday, Saturday at 10:59 PM ET</span></div>
-                            <div class="lc-row"><strong>Min. Jackpot</strong><span>$20 million (rolls over if no winner)</span></div>
-                            <div class="lc-row"><strong>Ticket Price</strong><span>$2 per play (Power Play add-on available)</span></div>
-                            <div class="lc-row"><strong>Any-Prize Odds</strong><span>1 in 24.9</span></div>
-                            <div class="lc-row"><strong>Tax</strong><span>Federal (37%) + state taxes apply. Lump sum or annuity option.</span></div>
-                            <div class="lc-row"><strong>Where to Buy</strong><span>Authorized retailers in 45 states, DC, Puerto Rico, and US Virgin Islands</span></div>
-                            <div class="lc-row"><strong>Claim Deadline</strong><span>90 days to 1 year depending on the state of purchase</span></div>
-                            <div class="lc-row"><strong>Official Site</strong><span><a href="https://www.powerball.com" target="_blank" rel="noopener">powerball.com</a></span></div>
-                        </div>
-                    </details>
-
-                    <details class="lottery-card">
-                        <summary><span class="lc-flag">🇺🇸</span><span class="lc-name">USA Mega Millions</span><span class="lc-tag">Bi-weekly</span></summary>
-                        <div class="lc-body">
-                            <div class="lc-row"><strong>Format</strong><span>Pick 5 numbers from 1–70, then 1 Mega Ball from 1–25</span></div>
-                            <div class="lc-row"><strong>Draw Days</strong><span>Tuesday and Friday at 11:00 PM ET</span></div>
-                            <div class="lc-row"><strong>Min. Jackpot</strong><span>$20 million (rolls over if no winner)</span></div>
-                            <div class="lc-row"><strong>Ticket Price</strong><span>$2 per play (Megaplier add-on available)</span></div>
-                            <div class="lc-row"><strong>Any-Prize Odds</strong><span>1 in 24</span></div>
-                            <div class="lc-row"><strong>Tax</strong><span>Federal (37%) + state taxes apply. Lump sum or annuity option.</span></div>
-                            <div class="lc-row"><strong>Where to Buy</strong><span>Authorized retailers in 45 states, DC, and US Virgin Islands</span></div>
-                            <div class="lc-row"><strong>Claim Deadline</strong><span>60 days to 1 year depending on the state of purchase</span></div>
-                            <div class="lc-row"><strong>Official Site</strong><span><a href="https://www.megamillions.com" target="_blank" rel="noopener">megamillions.com</a></span></div>
-                        </div>
-                    </details>
-
-                    <details class="lottery-card">
-                        <summary><span class="lc-flag">🇪🇺</span><span class="lc-name">EuroMillions</span><span class="lc-tag">Bi-weekly</span></summary>
-                        <div class="lc-body">
-                            <div class="lc-row"><strong>Format</strong><span>Pick 5 numbers from 1–50, then 2 Lucky Stars from 1–12</span></div>
-                            <div class="lc-row"><strong>Draw Days</strong><span>Tuesday and Friday at 20:45 CET (Brussels)</span></div>
-                            <div class="lc-row"><strong>Min. Jackpot</strong><span>€17 million (rolls over; capped at €250 million)</span></div>
-                            <div class="lc-row"><strong>Ticket Price</strong><span>€2.50 per line (varies by country)</span></div>
-                            <div class="lc-row"><strong>Any-Prize Odds</strong><span>1 in 13</span></div>
-                            <div class="lc-row"><strong>Tax</strong><span>Tax-free in most participating countries (UK, Ireland, France, etc.)</span></div>
-                            <div class="lc-row"><strong>Where to Buy</strong><span>Available in 9 countries: UK, Ireland, France, Spain, Portugal, Austria, Belgium, Luxembourg, Switzerland</span></div>
-                            <div class="lc-row"><strong>Claim Deadline</strong><span>180 days from draw date (varies by country)</span></div>
-                            <div class="lc-row"><strong>Official Site</strong><span><a href="https://www.euro-millions.com" target="_blank" rel="noopener">euro-millions.com</a></span></div>
-                        </div>
-                    </details>
-
-                    <details class="lottery-card">
-                        <summary><span class="lc-flag">🇬🇧</span><span class="lc-name">UK National Lottery (Lotto)</span><span class="lc-tag">Bi-weekly</span></summary>
-                        <div class="lc-body">
-                            <div class="lc-row"><strong>Format</strong><span>Pick 6 numbers from 1–59 (operator draws a bonus ball — you don't choose it)</span></div>
-                            <div class="lc-row"><strong>Draw Days</strong><span>Wednesday and Saturday at 7:45 PM GMT</span></div>
-                            <div class="lc-row"><strong>Min. Jackpot</strong><span>£2 million (rolls over; must-be-won draws apply after 5 rollovers)</span></div>
-                            <div class="lc-row"><strong>Ticket Price</strong><span>£2 per line</span></div>
-                            <div class="lc-row"><strong>Any-Prize Odds</strong><span>1 in 9.3</span></div>
-                            <div class="lc-row"><strong>Tax</strong><span>All prizes are completely tax-free in the UK</span></div>
-                            <div class="lc-row"><strong>Where to Buy</strong><span>National Lottery retailers across the UK, or online at national-lottery.co.uk (must be 18+)</span></div>
-                            <div class="lc-row"><strong>Claim Deadline</strong><span>180 days from the draw date</span></div>
-                            <div class="lc-row"><strong>Official Site</strong><span><a href="https://www.national-lottery.co.uk" target="_blank" rel="noopener">national-lottery.co.uk</a></span></div>
-                        </div>
-                    </details>
-
-                    <details class="lottery-card">
-                        <summary><span class="lc-flag">🇰🇷</span><span class="lc-name">Korea Lotto 6/45 (로또 6/45)</span><span class="lc-tag">Weekly</span></summary>
-                        <div class="lc-body">
-                            <div class="lc-row"><strong>Format</strong><span>Pick 6 numbers from 1–45 (a 7th bonus number is drawn by the operator)</span></div>
-                            <div class="lc-row"><strong>Draw Day</strong><span>Every Saturday at 8:35 PM KST (live broadcast on MBC)</span></div>
-                            <div class="lc-row"><strong>Min. Jackpot</strong><span>No fixed minimum — jackpot is 75% of the prize pool from ticket sales</span></div>
-                            <div class="lc-row"><strong>Ticket Price</strong><span>₩1,000 per game (5 games per slip)</span></div>
-                            <div class="lc-row"><strong>Any-Prize Odds</strong><span>1 in 5 (4th–5th prize)</span></div>
-                            <div class="lc-row"><strong>Tax</strong><span>Prizes over ₩200,000 are subject to withholding tax (20–33%)</span></div>
-                            <div class="lc-row"><strong>Where to Buy</strong><span>Authorized lottery retailers (복권방) across South Korea. Online via official app for registered users.</span></div>
-                            <div class="lc-row"><strong>Claim Deadline</strong><span>1 year from the draw date</span></div>
-                            <div class="lc-row"><strong>Official Site</strong><span><a href="https://www.dhlottery.co.kr" target="_blank" rel="noopener">dhlottery.co.kr</a></span></div>
-                        </div>
-                    </details>
-
-                    <details class="lottery-card">
-                        <summary><span class="lc-flag">🇯🇵</span><span class="lc-name">Japan Loto 7 (ロト7)</span><span class="lc-tag">Weekly</span></summary>
-                        <div class="lc-body">
-                            <div class="lc-row"><strong>Format</strong><span>Pick 7 numbers from 1–37 (2 bonus numbers drawn by operator for 2nd-tier prizes)</span></div>
-                            <div class="lc-row"><strong>Draw Day</strong><span>Every Friday at 6:30 PM JST</span></div>
-                            <div class="lc-row"><strong>Min. Jackpot</strong><span>¥200 million (rolls over; carryover jackpot can reach ¥4 billion+)</span></div>
-                            <div class="lc-row"><strong>Ticket Price</strong><span>¥200 per play</span></div>
-                            <div class="lc-row"><strong>Any-Prize Odds</strong><span>1 in 6.1</span></div>
-                            <div class="lc-row"><strong>Tax</strong><span>Lottery prizes are tax-free in Japan regardless of amount</span></div>
-                            <div class="lc-row"><strong>Where to Buy</strong><span>Mizuho Bank lottery counters and authorized convenience stores (7-Eleven, Lawson, FamilyMart)</span></div>
-                            <div class="lc-row"><strong>Claim Deadline</strong><span>1 year from the draw date</span></div>
-                            <div class="lc-row"><strong>Official Site</strong><span><a href="https://www.takarakuji-official.jp" target="_blank" rel="noopener">takarakuji-official.jp</a></span></div>
-                        </div>
-                    </details>
-
+                    <div id="lottery-details-container"></div>
                 </div>
 
                 <!-- Pro Tip -->
@@ -433,19 +343,8 @@
                     <p id="tip-desc">If you win while abroad, most lotteries require you to claim the prize in the same state/country where the ticket was purchased. Always check the official website linked in our Results section!</p>
                 </div>
 
-                <!-- Responsible Gaming -->
-                <div class="responsible-gaming">
-                    <h3>🛡️ Responsible Gaming</h3>
-                    <p>Lottery games are a form of entertainment. Never spend more than you can afford to lose, and remember that the odds of winning a jackpot are extremely low. LottoPro does not encourage excessive gambling.</p>
-                    <p>If you or someone you know has a gambling problem, free help is available:</p>
-                    <div class="helpline-grid">
-                        <div class="helpline-item"><strong>🇺🇸 USA</strong> — National Problem Gambling Helpline: <strong>1-800-522-4700</strong></div>
-                        <div class="helpline-item"><strong>🇬🇧 UK</strong> — GamCare: <strong>0808 8020 133</strong></div>
-                        <div class="helpline-item"><strong>🇰🇷 Korea</strong> — 한국도박문제관리센터: <strong>1336</strong></div>
-                        <div class="helpline-item"><strong>🇯🇵 Japan</strong> — ギャンブル等依存症相談: <strong>0570-035-777</strong></div>
-                        <div class="helpline-item"><strong>🌍 International</strong> — Gamblers Anonymous: <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">gamblersanonymous.org</a></div>
-                    </div>
-                </div>
+                <!-- Responsible Gaming (dynamically rendered) -->
+                <div id="responsible-gaming-container"></div>
             </div>
         </section>
 
@@ -456,7 +355,7 @@
                     <h2 id="contact-header">Get in Touch</h2>
                     <p id="contact-sub">Have a suggestion or found a bug? We'd love to hear from you!</p>
                 </div>
-                
+
                 <form action="https://formspree.io/f/mwvywbby" method="POST" class="premium-form">
                     <div class="form-grid">
                         <div class="form-group">
@@ -465,12 +364,12 @@
                         </div>
                         <div class="form-group">
                             <label for="email" id="label-email">Email</label>
-                            <input type="email" id="email" name="_replyto" required placeholder="Email address">
+                            <input type="email" id="email" name="_replyto" required data-i18n-placeholder="emailPlaceholder" placeholder="Email address">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message" id="label-msg">Message</label>
-                        <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+                        <textarea id="message" name="message" required data-i18n-placeholder="msgPlaceholder" placeholder="How can we help you?"></textarea>
                     </div>
                     <button type="submit" class="submit-btn-premium" id="btn-submit">
                         <span id="btn-text">Send Message</span>
@@ -490,20 +389,20 @@
                         <p id="faq-a2">Yes. We use the Web Crypto API (crypto.getRandomValues), the same cryptographic standard used in banking software, ensuring every number is genuinely unpredictable.</p>
                     </div>
                     <div class="faq-card-premium">
-                        <h4>Does LottoPro generate bonus numbers?</h4>
-                        <p>Only for lotteries where the buyer chooses a bonus number: Powerball (Powerball), Mega Millions (Mega Ball), and EuroMillions (Lucky Stars). For UK Lotto, Korea 6/45, and Japan Loto 7, the bonus ball is drawn by the operator — not the player — so we only generate the main numbers.</p>
+                        <h4 data-i18n="faqQ3">Does LottoPro generate bonus numbers?</h4>
+                        <p data-i18n="faqA3">Only for lotteries where the buyer chooses a bonus number: Powerball (Powerball), Mega Millions (Mega Ball), and EuroMillions (Lucky Stars). For UK Lotto, Korea 6/45, and Japan Loto 7, the bonus ball is drawn by the operator — not the player — so we only generate the main numbers.</p>
                     </div>
                     <div class="faq-card-premium">
-                        <h4>Can I use the same numbers every week?</h4>
-                        <p>Absolutely. Use the "Include Numbers" field in the generator to lock in specific numbers you always want included. Your history is also saved automatically so you can reference past sets.</p>
+                        <h4 data-i18n="faqQ4">Can I use the same numbers every week?</h4>
+                        <p data-i18n="faqA4">Absolutely. Use the "Include Numbers" field in the generator to lock in specific numbers you always want included. Your history is also saved automatically so you can reference past sets.</p>
                     </div>
                     <div class="faq-card-premium">
-                        <h4>Does using a number generator improve my chances of winning?</h4>
-                        <p>No. Each lottery draw is completely independent. No tool, system, or strategy can improve your probability of winning. LottoPro is provided for entertainment and convenience only.</p>
+                        <h4 data-i18n="faqQ5">Does using a number generator improve my chances of winning?</h4>
+                        <p data-i18n="faqA5">No. Each lottery draw is completely independent. No tool, system, or strategy can improve your probability of winning. LottoPro is provided for entertainment and convenience only.</p>
                     </div>
                     <div class="faq-card-premium">
-                        <h4>Is my data stored or shared?</h4>
-                        <p>We do not collect personal data. Your generated number history is stored only in your own browser (localStorage) and is never transmitted to our servers. See our <a href="privacy-policy.html" style="color:var(--primary-color)">Privacy Policy</a> for full details.</p>
+                        <h4 data-i18n="faqQ6">Is my data stored or shared?</h4>
+                        <p data-i18n="faqA6">We do not collect personal data. Your generated number history is stored only in your own browser (localStorage) and is never transmitted to our servers. See our <a href="privacy-policy.html" style="color:var(--primary-color)">Privacy Policy</a> for full details.</p>
                     </div>
                 </div>
             </div>
@@ -528,9 +427,9 @@
             </div>
             <p>&copy; 2026 LottoPro. All rights reserved.</p>
             <ul class="footer-links">
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="terms-of-service.html">Terms of Service</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="privacy-policy.html"><span data-i18n="footerPrivacy">Privacy Policy</span></a></li>
+                <li><a href="terms-of-service.html"><span data-i18n="footerTerms">Terms of Service</span></a></li>
+                <li><a href="about.html"><span data-i18n="footerAbout">About Us</span></a></li>
             </ul>
         </div>
     </footer>
