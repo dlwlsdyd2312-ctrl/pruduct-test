@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZBELZMYPK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3ZBELZMYPK');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-5192540925886631">
+    <meta name="description" content="LottoPro Blog — Lottery strategy guides, number analysis, odds breakdowns, and responsible gambling tips.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pruduct-test.pages.dev/blog.html">
+    <meta property="og:title" content="LottoPro Blog — Lottery Analysis & Strategy">
+    <meta property="og:description" content="Expert lottery guides: odds analysis, hot/cold numbers, strategy tips for Powerball, EuroMillions, Korea 6/45 and more.">
+    <title>LottoPro Blog — Lottery Analysis & Strategy</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5192540925886631" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
+        .blog-hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .blog-hero p { color: var(--text-muted, #64748b); font-size: 1.05rem; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; padding: 1.5rem 0 3rem; }
+        .blog-card { background: var(--container-bg); border: 1px solid var(--toggle-bg); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; text-decoration: none; color: inherit; }
+        .blog-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+        .blog-card-meta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted, #64748b); }
+        .blog-card-category { background: #dbeafe; color: #1d4ed8; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.7rem; }
+        .dark .blog-card-category { background: #1e3a5f; color: #93c5fd; }
+        .blog-card h2 { font-size: 1.05rem; font-weight: 700; margin: 0; line-height: 1.4; color: var(--text-color); }
+        .blog-card p { font-size: 0.875rem; color: var(--text-muted, #64748b); margin: 0; line-height: 1.6; flex: 1; }
+        .blog-card-read { font-size: 0.8rem; font-weight: 600; color: #2563eb; margin-top: auto; }
+        .blog-filter { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+        .filter-btn { padding: 0.3rem 0.9rem; border-radius: 999px; border: 1px solid var(--toggle-bg); background: transparent; color: var(--text-color); font-size: 0.8rem; cursor: pointer; transition: background 0.15s; }
+        .filter-btn.active, .filter-btn:hover { background: #2563eb; color: white; border-color: #2563eb; }
+        @media (max-width: 480px) { .blog-grid { grid-template-columns: 1fr; } .blog-hero h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">LottoPro</a>
+            <div class="nav-controls">
+                <div class="lang-selector">
+                    <button class="lang-btn" data-lang="en" title="English">🇺🇸 EN</button>
+                    <button class="lang-btn" data-lang="ko" title="한국어">🇰🇷 KO</button>
+                    <button class="lang-btn" data-lang="ja" title="日本語">🇯🇵 JA</button>
+                </div>
+                <button id="theme-toggle" title="Toggle Dark/Light Mode"><span class="icon">🌙</span></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="ad-unit ad-top">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5192540925886631" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="blog-hero">
+            <h1 id="blog-title">📝 Lottery Analysis Blog</h1>
+            <p id="blog-sub">Strategy guides, number analysis, and responsible gambling tips.</p>
+        </div>
+
+        <div class="blog-filter" id="blog-filter"></div>
+        <div class="blog-grid" id="blog-grid"></div>
+
+        <div class="ad-unit" style="margin-top:2rem;">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5192540925886631" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 LottoPro. <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-service.html">Terms</a> · <a href="about.html">About</a></p>
+    </footer>
+
+    <script src="data/posts.js"></script>
+    <script>
+        // ── Theme ──────────────────────────────────────────────────────────────
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') document.body.classList.add('dark');
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            document.querySelector('#theme-toggle .icon').textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+        });
+        if (savedTheme === 'dark') document.querySelector('#theme-toggle .icon').textContent = '☀️';
+
+        // ── Language ──────────────────────────────────────────────────────────
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        const UI_TEXT = {
+            en: { title: '📝 Lottery Analysis Blog', sub: 'Strategy guides, number analysis, and responsible gambling tips.', all: 'All', read: 'Read article →' },
+            ko: { title: '📝 복권 분석 블로그', sub: '전략 가이드, 번호 분석, 책임감 있는 도박 팁.', all: '전체', read: '기사 읽기 →' },
+            ja: { title: '📝 宝くじ分析ブログ', sub: '戦略ガイド、番号分析、責任あるギャンブルのヒント。', all: 'すべて', read: '記事を読む →' },
+        };
+
+        function applyLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+            document.documentElement.lang = lang;
+            const t = UI_TEXT[lang] || UI_TEXT.en;
+            document.getElementById('blog-title').textContent = t.title;
+            document.getElementById('blog-sub').textContent = t.sub;
+            renderFilter(lang);
+            renderGrid(lang, activeFilter);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+        });
+
+        // ── Filter ────────────────────────────────────────────────────────────
+        let activeFilter = 'all';
+
+        function renderFilter(lang) {
+            const t = UI_TEXT[lang] || UI_TEXT.en;
+            const categories = ['all', ...new Set(POSTS.map(p => p.category[lang] || p.category.en))];
+            const container = document.getElementById('blog-filter');
+            container.innerHTML = categories.map(cat => `
+                <button class="filter-btn${cat === activeFilter ? ' active' : ''}" data-cat="${cat}">
+                    ${cat === 'all' ? t.all : cat}
+                </button>
+            `).join('');
+            container.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeFilter = btn.dataset.cat;
+                    renderFilter(currentLang);
+                    renderGrid(currentLang, activeFilter);
+                });
+            });
+        }
+
+        // ── Grid ──────────────────────────────────────────────────────────────
+        function renderGrid(lang, filter) {
+            const t = UI_TEXT[lang] || UI_TEXT.en;
+            let posts = [...POSTS].reverse();
+            if (filter !== 'all') {
+                posts = posts.filter(p => (p.category[lang] || p.category.en) === filter);
+            }
+            document.getElementById('blog-grid').innerHTML = posts.map(p => `
+                <a class="blog-card" href="post.html?id=${p.id}&lang=${lang}">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">${p.category[lang] || p.category.en}</span>
+                        <span>${p.date}</span>
+                    </div>
+                    <h2>${p.title[lang] || p.title.en}</h2>
+                    <p>${p.summary[lang] || p.summary.en}</p>
+                    <span class="blog-card-read">${t.read}</span>
+                </a>
+            `).join('');
+        }
+
+        applyLang(currentLang);
+    </script>
+</body>
+</html>
