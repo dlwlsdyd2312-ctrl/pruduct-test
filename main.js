@@ -86,6 +86,12 @@ const TRANSLATIONS = {
         responsibleTitle: '🛡️ Responsible Gaming',
         responsibleP1: 'Lottery games are a form of entertainment. Never spend more than you can afford to lose, and remember that the odds of winning a jackpot are extremely low. LottoPro does not encourage excessive gambling.',
         responsibleP2: 'If you or someone you know has a gambling problem, free help is available:',
+        // Number Analysis
+        analyzeTitle: '📊 Number Analysis',
+        analyzeOddEven: 'Odd / Even', analyzeOdd: 'Odd', analyzeEven: 'Even',
+        analyzeSum: 'Total Sum', analyzeAvg: 'Avg',
+        analyzeConsec: 'Consecutive', analyzeNone: 'None',
+        analyzeDist: 'Distribution', analyzeLow: 'Low', analyzeMid: 'Mid', analyzeHigh: 'High',
     },
     ko: {
         tabHome: '🏠 홈', tabGen: '🎰 생성기', tabGuide: '📖 가이드', tabContact: '📧 문의',
@@ -173,6 +179,12 @@ const TRANSLATIONS = {
         responsibleTitle: '🛡️ 책임감 있는 게임',
         responsibleP1: '복권은 오락의 한 형태입니다. 감당할 수 있는 금액 이상을 쓰지 마시고, 잭팟 당첨 확률이 극히 낮다는 점을 기억하세요. LottoPro는 과도한 도박을 권장하지 않습니다.',
         responsibleP2: '본인이나 주변에 도박 문제가 있다면 무료 도움을 받을 수 있습니다:',
+        // Number Analysis
+        analyzeTitle: '📊 번호 분석',
+        analyzeOddEven: '홀수 / 짝수', analyzeOdd: '홀', analyzeEven: '짝',
+        analyzeSum: '번호 합계', analyzeAvg: '평균',
+        analyzeConsec: '연속 번호', analyzeNone: '없음',
+        analyzeDist: '범위 분포', analyzeLow: '하위', analyzeMid: '중위', analyzeHigh: '상위',
     },
     ja: {
         tabHome: '🏠 ホーム', tabGen: '🎰 生成器', tabGuide: '📖 ガイド', tabContact: '📧 お問い合わせ',
@@ -260,6 +272,12 @@ const TRANSLATIONS = {
         responsibleTitle: '🛡️ 責任あるゲーム',
         responsibleP1: '宝くじは娯楽の一形態です。失っても惜しくない金額以上は使わず、ジャックポット当選確率が極めて低いことを忘れないでください。LottoProは過度なギャンブルを推奨しません。',
         responsibleP2: 'あなた自身や身近な方にギャンブル依存の問題がある場合、無料の支援を受けられます：',
+        // Number Analysis
+        analyzeTitle: '📊 番号分析',
+        analyzeOddEven: '奇数 / 偶数', analyzeOdd: '奇', analyzeEven: '偶',
+        analyzeSum: '合計', analyzeAvg: '平均',
+        analyzeConsec: '連続番号', analyzeNone: 'なし',
+        analyzeDist: '分布', analyzeLow: '低', analyzeMid: '中', analyzeHigh: '高',
     }
 };
 
@@ -403,6 +421,79 @@ const LOTTO_CONFIGS = {
 function resolveDetail(val, lang) {
     if (typeof val === 'string') return val;
     return val[lang] || val['en'] || '';
+}
+
+// ─── Number Analysis ──────────────────────────────────────────────────────────
+function analyzeNumbers(numbers, cfg) {
+    const sorted = [...numbers].sort((a, b) => a - b);
+    const odd = numbers.filter(n => n % 2 !== 0).length;
+    const sum = numbers.reduce((a, b) => a + b, 0);
+    const avg = (sum / numbers.length).toFixed(1);
+
+    // Find consecutive groups (e.g. [12,13,14] → "12-14")
+    const consecGroups = [];
+    let i = 0;
+    while (i < sorted.length) {
+        let j = i;
+        while (j + 1 < sorted.length && sorted[j + 1] === sorted[j] + 1) j++;
+        if (j > i) consecGroups.push(sorted.slice(i, j + 1));
+        i = j + 1;
+    }
+
+    // Distribution into three equal bands
+    const third = Math.ceil(cfg.mainRange / 3);
+    const low  = numbers.filter(n => n <= third).length;
+    const mid  = numbers.filter(n => n > third && n <= third * 2).length;
+    const high = numbers.filter(n => n > third * 2).length;
+
+    // Sum position as percentage between theoretical min and max
+    const minSum = Array.from({length: cfg.mainCount}, (_, k) => k + 1).reduce((a, b) => a + b, 0);
+    const maxSum = Array.from({length: cfg.mainCount}, (_, k) => cfg.mainRange - k).reduce((a, b) => a + b, 0);
+    const sumPct = Math.round((sum - minSum) / (maxSum - minSum) * 100);
+
+    return { odd, even: numbers.length - odd, sum, avg, consecGroups, low, mid, high, sumPct };
+}
+
+function renderNumberAnalysis(mainNumbers, cfg, lang) {
+    const container = document.getElementById('number-analysis');
+    if (!container) return;
+    const t = TRANSLATIONS[lang];
+    const a = analyzeNumbers(mainNumbers, cfg);
+    const oddPct = Math.round(a.odd / mainNumbers.length * 100);
+
+    const consecText = a.consecGroups.length
+        ? a.consecGroups.map(g => g[0] + (g.length > 1 ? '–' + g[g.length - 1] : '')).join(', ')
+        : t.analyzeNone;
+
+    container.innerHTML = `
+        <div class="analysis-card">
+            <h4>${t.analyzeTitle}</h4>
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <span class="analysis-label">${t.analyzeOddEven}</span>
+                    <div class="oe-bar"><div class="oe-odd" style="width:${oddPct}%"></div></div>
+                    <span class="analysis-val">${t.analyzeOdd} ${a.odd} · ${t.analyzeEven} ${a.even}</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">${t.analyzeSum}</span>
+                    <div class="sum-track"><div class="sum-pin" style="left:${Math.max(2, Math.min(98, a.sumPct))}%"></div></div>
+                    <span class="analysis-val">${a.sum} <small>(${t.analyzeAvg}: ${a.avg})</small></span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">${t.analyzeConsec}</span>
+                    <span class="analysis-val${a.consecGroups.length ? ' analysis-warn' : ''}">${consecText}</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">${t.analyzeDist}</span>
+                    <div class="dist-badges">
+                        <span class="dist-low">${t.analyzeLow} ${a.low}</span>
+                        <span class="dist-mid">${t.analyzeMid} ${a.mid}</span>
+                        <span class="dist-high">${t.analyzeHigh} ${a.high}</span>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    container.style.display = 'block';
 }
 
 // ─── Generate Ticket SVG ──────────────────────────────────────────────────────
@@ -730,6 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const luckMsg = document.getElementById('luck-message');
 
         numbersContainer.innerHTML = '';
+        document.getElementById('number-analysis').style.display = 'none';
         generateBtn.disabled = true;
         luckMsg.textContent = t.luckMessages[Math.floor(Math.random() * t.luckMessages.length)];
 
@@ -792,6 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     generateBtn.disabled = false;
                     const localName = currentConfig.lottoNames[currentLang] || currentConfig.lottoName;
                     addToHistory(localName, mainNumbers, bonusNumbers);
+                    renderNumberAnalysis(mainNumbers, currentConfig, currentLang);
                 }
             }, 800);
 
