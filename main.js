@@ -5,6 +5,8 @@ const LOTTO_CONFIGS = {
         separateBonusPool: false,
         resultsUrl: 'https://www.dhlottery.co.kr/common.do?method=main',
         stats: '자주 나오는 번호: 1, 18, 27, 34, 43, 45',
+        hotNumbers: [1, 18, 27, 34, 43, 45],
+        coldNumbers: [3, 9, 21, 25, 32, 40],
         meta: {
             title: '로또 번호 생성기 - 이번 주 당첨 번호 확인 및 통계 분석',
             description: '글로벌 로또 번호 생성기입니다. 한국 로또 6/45, 미국 파워볼, 일본 로또 7 등의 번호를 통계 기반으로 생성하고 공식 당첨 결과를 확인하세요.'
@@ -39,6 +41,8 @@ const LOTTO_CONFIGS = {
         bonusLabel: 'PB', separateBonusPool: true,
         resultsUrl: 'https://www.powerball.com/draw-results',
         stats: 'Most frequent numbers: 32, 39, 61, 63, 69',
+        hotNumbers: [32, 39, 61, 63, 69, 23],
+        coldNumbers: [4, 10, 18, 46, 55, 66],
         meta: {
             title: 'LottoPro - Global Powerball Generator & Official Results',
             description: 'The ultimate global lotto number generator. Get Powerball, Mega Millions, and international lottery numbers with statistical insights.'
@@ -73,6 +77,8 @@ const LOTTO_CONFIGS = {
         bonusLabel: 'Bonus', separateBonusPool: false,
         resultsUrl: 'https://www.national-lottery.co.uk/results',
         stats: 'Hot numbers: 23, 38, 41, 49, 52, 58',
+        hotNumbers: [23, 38, 41, 49, 52, 58],
+        coldNumbers: [7, 14, 26, 35, 44, 56],
         meta: {
             title: 'UK Lotto Generator - National Lottery Results & Statistics',
             description: 'Generate UK National Lottery numbers and check the latest results. Statistical analysis for the best lottery combinations.'
@@ -107,6 +113,8 @@ const LOTTO_CONFIGS = {
         separateBonusPool: false,
         resultsUrl: 'https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/loto7/index.html',
         stats: '出現頻度の高い数字: 13, 15, 21, 26, 30, 32, 34',
+        hotNumbers: [13, 15, 21, 26, 30, 32, 34],
+        coldNumbers: [2, 6, 10, 18, 24, 31, 37],
         meta: {
             title: 'ロト番号生成器 - ロト7 当選番号確認と最新統計分析',
             description: '日本と世界のロト番号生成ツール。ロト7、ロト6、パワーボール等の当選確率を高める統計的アプローチを提供します。'
@@ -141,6 +149,8 @@ const LOTTO_CONFIGS = {
         bonusLabel: 'Star', separateBonusPool: true,
         resultsUrl: 'https://www.euro-millions.com/results',
         stats: 'Frequent stars: 3, 9 | Main: 17, 21, 42, 44, 50',
+        hotNumbers: [17, 21, 42, 44, 50],
+        coldNumbers: [2, 9, 25, 33, 47],
         meta: {
             title: 'EuroMillions Generator - Results, Stats & Predictions',
             description: 'The ultimate tool for EuroMillions players. Generate random numbers based on statistics and check official results.'
@@ -262,12 +272,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         for(let id in elements) { const el = document.getElementById(id); if(el) el.innerHTML = elements[id]; }
         
-        document.getElementById('stats-data').textContent = currentConfig.stats;
+        renderNumberChart('hot');
         document.getElementById('results-link').href = currentConfig.resultsUrl;
         document.getElementById('name').placeholder = t.labelName;
         if (t.historyTitle) { const ht = document.getElementById('history-title'); if (ht) ht.textContent = t.historyTitle; }
         if (t.clearHistory) { const cb = document.getElementById('clear-history-btn'); if (cb) cb.textContent = t.clearHistory; }
         numbersContainer.innerHTML = '';
+        renderNumberChart(currentHC);
     }
 
     generateBtn.addEventListener('click', () => {
@@ -384,6 +395,38 @@ document.addEventListener('DOMContentLoaded', () => {
             attempts++;
         }
         return Array.from(numbers).sort((a, b) => a - b);
+    }
+
+    // Hot/Cold number chart
+    const numberChart = document.getElementById('number-chart');
+    const hcTabs = document.querySelectorAll('.hc-tab');
+    let currentHC = 'hot';
+
+    hcTabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            hcTabs.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentHC = btn.getAttribute('data-hc');
+            renderNumberChart(currentHC);
+        });
+    });
+
+    function renderNumberChart(type) {
+        const nums = type === 'hot' ? currentConfig.hotNumbers : currentConfig.coldNumbers;
+        if (!nums || !numberChart) return;
+        const maxFreq = 100;
+        const freqSteps = nums.map((_, i) => Math.round(maxFreq - i * (maxFreq / nums.length * 0.6)));
+        const color = type === 'hot' ? '#ef4444' : '#3b82f6';
+        const label = type === 'hot' ? '🔥' : '🧊';
+        numberChart.innerHTML = nums.map((n, i) => `
+            <div class="chart-row">
+                <span class="chart-num" style="background:${getBallColor(n)}">${n}</span>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="width:${freqSteps[i]}%;background:${color}"></div>
+                </div>
+                <span class="chart-pct">${label} #${i + 1}</span>
+            </div>
+        `).join('');
     }
 
     function getBallColor(n) {

@@ -63,6 +63,14 @@
     </script>
 
     <title>LottoPro - Global Lottery Number Generator & Results</title>
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="LottoPro">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5192540925886631"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
@@ -87,6 +95,17 @@
     </header>
 
     <main class="content-wrapper">
+        <!-- Ad: top banner -->
+        <div class="ad-unit ad-top">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5192540925886631"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <!-- Main Navigation Tabs -->
         <div class="main-tabs">
             <button class="main-tab-btn active" data-main-tab="home-tab" id="tab-home">🏠 Home</button>
@@ -224,7 +243,11 @@
 
                 <div class="stats-box">
                     <h4 id="stats-title">Statistics</h4>
-                    <p id="stats-data">Loading statistics...</p>
+                    <div class="hot-cold-tabs">
+                        <button class="hc-tab active" data-hc="hot" id="tab-hot">🔥 Hot</button>
+                        <button class="hc-tab" data-hc="cold" id="tab-cold">🧊 Cold</button>
+                    </div>
+                    <div id="number-chart" class="number-chart"></div>
                     <a href="#" id="results-link" target="_blank" class="results-link">Check Official Results</a>
                 </div>
 
@@ -330,8 +353,15 @@
             </div>
         </section>
 
-        <div class="ad-placeholder ad-bottom">
-            <span class="ad-placeholder-text">Advertisement Space</span>
+        <!-- Ad: bottom banner -->
+        <div class="ad-unit ad-bottom">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5192540925886631"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </main>
 
@@ -349,5 +379,10 @@
         </div>
     </footer>
     <script src="main.js" type="module"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+      }
+    </script>
 </body>
 </html>
