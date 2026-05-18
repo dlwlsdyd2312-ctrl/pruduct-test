@@ -1,8 +1,8 @@
 const LOTTO_CONFIGS = {
     kr: {
         name: 'South Korea', lang: 'ko', lottoName: '로또 6/45',
-        mainCount: 6, mainRange: 45, bonusCount: 1, bonusRange: 45,
-        bonusLabel: '보너스', separateBonusPool: false,
+        mainCount: 6, mainRange: 45, bonusCount: 0, bonusRange: 45,
+        separateBonusPool: false,
         resultsUrl: 'https://www.dhlottery.co.kr/common.do?method=main',
         stats: '자주 나오는 번호: 1, 18, 27, 34, 43, 45',
         hotNumbers: [1, 18, 27, 34, 43, 45],
@@ -73,8 +73,8 @@ const LOTTO_CONFIGS = {
     },
     uk: {
         name: 'United Kingdom', lang: 'en', lottoName: 'Lotto (UK)',
-        mainCount: 6, mainRange: 59, bonusCount: 1, bonusRange: 59,
-        bonusLabel: 'Bonus', separateBonusPool: false,
+        mainCount: 6, mainRange: 59, bonusCount: 0, bonusRange: 59,
+        separateBonusPool: false,
         resultsUrl: 'https://www.national-lottery.co.uk/results',
         stats: 'Hot numbers: 23, 38, 41, 49, 52, 58',
         hotNumbers: [23, 38, 41, 49, 52, 58],
@@ -109,8 +109,8 @@ const LOTTO_CONFIGS = {
     },
     jp_l7: {
         name: 'Japan', lang: 'ja', lottoName: 'ロト7 (Loto 7)',
-        mainCount: 7, mainRange: 37, bonusCount: 2, bonusRange: 37,
-        bonusLabel: 'ボーナス', separateBonusPool: false,
+        mainCount: 7, mainRange: 37, bonusCount: 0, bonusRange: 37,
+        separateBonusPool: false,
         resultsUrl: 'https://www.mizuhobank.co.jp/retail/takarakuji/check/loto/loto7/index.html',
         stats: '出現頻度の高い数字: 13, 15, 21, 26, 30, 32, 34',
         hotNumbers: [13, 15, 21, 26, 30, 32, 34],
