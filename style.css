@@ -228,6 +228,11 @@ body {
     border: 1px solid var(--toggle-bg);
 }
 
+.lottery-select-wrapper {
+    display: flex; align-items: center; gap: 1rem; justify-content: center;
+    margin-bottom: 1.25rem;
+}
+.lottery-select-wrapper label { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; }
 .generator-controls { margin-bottom: 2rem; display: flex; justify-content: center; }
 .set-count-wrapper {
     display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;

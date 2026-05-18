@@ -10,6 +10,7 @@ const TRANSLATIONS = {
         whyTitle: 'Why Choose LottoPro?',
         genTitle: 'Generate Your Lucky Numbers',
         genBtn: 'Generate Numbers',
+        lotteryLabel: 'Lottery:',
         setCountLabel: 'Sets:',
         labelExclude: 'Exclude Numbers:', labelInclude: 'Include Numbers:',
         statsTitle: 'Statistics', checkResults: 'Check Official Results',
@@ -103,6 +104,7 @@ const TRANSLATIONS = {
         whyTitle: 'LottoPro를 선택하는 이유',
         genTitle: '행운의 번호 생성하기',
         genBtn: '번호 생성하기',
+        lotteryLabel: '복권 선택:',
         setCountLabel: '세트 수:',
         labelExclude: '제외할 번호:', labelInclude: '포함할 번호:',
         statsTitle: '통계 데이터', checkResults: '공식 당첨 번호 확인하기',
@@ -196,6 +198,7 @@ const TRANSLATIONS = {
         whyTitle: 'LottoProを選ぶ理由',
         genTitle: '幸運の番号を生成する',
         genBtn: '番号を生成',
+        lotteryLabel: '宝くじ選択:',
         setCountLabel: 'セット数:',
         labelExclude: '除外番号:', labelInclude: '含む番号:',
         statsTitle: '統計データ', checkResults: '公式サイトで当選番号を確認',
@@ -706,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainTabContents = document.querySelectorAll('.main-tab-content');
 
     // ── Theme ─────────────────────────────────────────────────────────────────
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     themeToggle.addEventListener('click', () => {
         const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -769,6 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'how-it-works-title': t.howItWorksTitle,
             'why-title': t.whyTitle,
             'gen-title-text': t.genTitle, 'generate-btn': t.genBtn,
+            'lottery-select-label': t.lotteryLabel,
             'set-count-label': t.setCountLabel,
             'label-exclude': t.labelExclude, 'label-include': t.labelInclude,
             'stats-title': t.statsTitle, 'results-link': t.checkResults,

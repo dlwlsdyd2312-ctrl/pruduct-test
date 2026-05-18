@@ -86,14 +86,6 @@
                     <button class="lang-btn" data-lang="ko" title="한국어">🇰🇷 KO</button>
                     <button class="lang-btn" data-lang="ja" title="日本語">🇯🇵 JA</button>
                 </div>
-                <select id="country-select" class="country-select">
-                    <option value="us_pb">🇺🇸 USA (Powerball)</option>
-                    <option value="us_mm">🇺🇸 USA (Mega Millions)</option>
-                    <option value="kr">🇰🇷 South Korea (6/45)</option>
-                    <option value="uk">🇬🇧 United Kingdom (6/59)</option>
-                    <option value="jp_l7">🇯🇵 Japan (Loto 7)</option>
-                    <option value="eu_em">🇪🇺 Europe (EuroMillions)</option>
-                </select>
                 <button id="theme-toggle" title="Toggle Dark/Light Mode">
                     <span class="icon">🌙</span>
                 </button>
@@ -200,6 +192,18 @@
         <section id="generator-tab" class="main-tab-content">
             <div class="container">
                 <h2 id="gen-title-text">Generate Your Lucky Numbers</h2>
+
+                <div class="lottery-select-wrapper">
+                    <label for="country-select" id="lottery-select-label">Lottery:</label>
+                    <select id="country-select" class="country-select">
+                        <option value="us_pb">🇺🇸 USA (Powerball)</option>
+                        <option value="us_mm">🇺🇸 USA (Mega Millions)</option>
+                        <option value="kr">🇰🇷 South Korea (6/45)</option>
+                        <option value="uk">🇬🇧 United Kingdom (6/59)</option>
+                        <option value="jp_l7">🇯🇵 Japan (Loto 7)</option>
+                        <option value="eu_em">🇪🇺 Europe (EuroMillions)</option>
+                    </select>
+                </div>
 
                 <div class="generator-controls">
                     <div class="set-count-wrapper">
