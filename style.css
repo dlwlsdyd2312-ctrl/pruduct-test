@@ -333,6 +333,56 @@ body {
 .why-item strong { display: block; font-weight: 700; color: var(--text-color); margin-bottom: 0.3rem; }
 .why-item p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
 
+/* Guide Tab Extras */
+.section-subheader { font-size: 1.4rem; font-weight: 800; margin: 2.5rem 0 1.2rem; color: var(--text-color); }
+.table-wrapper { overflow-x: auto; margin-bottom: 0.5rem; }
+
+.lottery-details-grid { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
+.lottery-card {
+    background: var(--container-bg); border-radius: 1rem; border: 1px solid var(--toggle-bg);
+    overflow: hidden; transition: box-shadow 0.2s;
+}
+.lottery-card:hover { box-shadow: 0 6px 20px var(--shadow-color); }
+.lottery-card summary {
+    display: flex; align-items: center; gap: 0.8rem; padding: 1.1rem 1.4rem;
+    cursor: pointer; font-weight: 700; font-size: 1rem; list-style: none;
+    user-select: none;
+}
+.lottery-card summary::-webkit-details-marker { display: none; }
+.lottery-card[open] summary { border-bottom: 1px solid var(--toggle-bg); }
+.lc-flag { font-size: 1.4rem; }
+.lc-name { flex: 1; color: var(--text-color); }
+.lc-tag {
+    font-size: 0.72rem; background: var(--accent-gradient); color: white;
+    padding: 0.2rem 0.7rem; border-radius: 2rem; font-weight: 700;
+}
+.lc-body { padding: 1rem 1.4rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.lc-row {
+    display: grid; grid-template-columns: 130px 1fr; gap: 0.8rem;
+    font-size: 0.9rem; align-items: baseline;
+}
+.lc-row strong { color: var(--text-muted); font-weight: 700; }
+.lc-row span { color: var(--text-color); }
+.lc-row a { color: var(--primary-color); }
+
+/* Responsible Gaming */
+.responsible-gaming {
+    background: #fef3c7; border-left: 5px solid #f59e0b; border-radius: 1rem;
+    padding: 2rem; margin-top: 2.5rem;
+}
+[data-theme="dark"] .responsible-gaming { background: #292218; }
+.responsible-gaming h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; color: #92400e; }
+[data-theme="dark"] .responsible-gaming h3 { color: #fcd34d; }
+.responsible-gaming p { font-size: 0.9rem; color: #78350f; margin-bottom: 0.8rem; }
+[data-theme="dark"] .responsible-gaming p { color: #fde68a; }
+.helpline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1rem; }
+.helpline-item {
+    background: rgba(255,255,255,0.6); border-radius: 0.6rem; padding: 0.7rem 1rem;
+    font-size: 0.85rem; color: #78350f;
+}
+[data-theme="dark"] .helpline-item { background: rgba(255,255,255,0.08); color: #fde68a; }
+.helpline-item a { color: #92400e; }
+
 /* Ad Unit */
 .ad-unit { margin: 1.5rem 0; min-height: 50px; }
 
@@ -379,7 +429,8 @@ body {
     .hero h1 { font-size: 1.8rem; }
     .main-tabs { overflow-x: auto; padding: 0.3rem; }
     .main-tab-btn { font-size: 0.85rem; padding: 0.6rem 0.4rem; min-width: 80px; }
-    .quick-grid, .advanced-options, .form-grid, .faq-grid-premium, .steps-grid, .why-grid { grid-template-columns: 1fr 1fr; }
+    .quick-grid, .advanced-options, .form-grid, .faq-grid-premium, .why-grid, .helpline-grid { grid-template-columns: 1fr 1fr; }
     .steps-grid { grid-template-columns: 1fr; }
+    .lc-row { grid-template-columns: 110px 1fr; }
     .container, .contact-card { padding: 1.5rem 1rem; }
 }
